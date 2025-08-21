@@ -6,6 +6,12 @@ public class aMediumQuestions {
         System.out.println(isPossible(new int[] {1,2,3,3,4,5}));
     }
 
+    // PX
+    public static String test(String s) {
+        
+        return "";
+    }
+
     // P151 OK
     public static String reverseWords(String s) {
         String[] spaces = s.split(" ");
@@ -51,7 +57,7 @@ public class aMediumQuestions {
         /*
         if (nums.length < 3) {
             return false;
-        }
+        }git
         for (int i = 0; i < nums.length; i++) {
             nums[i] += 1000;
         }
@@ -116,5 +122,29 @@ public class aMediumQuestions {
      * return true;
      */
     
-}
+    }
+
+
+    // P792 OK
+    public static int numMatchingSubseq(String s, String[] words) {
+        HashMap<String, Integer> counts = new HashMap<>();
+        for (String word : words) {
+            counts.put(word, counts.getOrDefault(word, 0) + 1);
+        }
+        int index = 0;
+        int num = 0;
+        for (String word : counts.keySet()) {
+            index = 0;
+            for (int i = 0; i < s.length(); i++) {
+                if (s.charAt(i) == word.charAt(index)) {
+                    index++;
+                }
+                if (index == word.length()) {
+                    num += counts.get(word);
+                    break;
+                }
+            }
+        }
+        return num;
+    }
 }
