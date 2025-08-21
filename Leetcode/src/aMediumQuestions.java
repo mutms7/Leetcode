@@ -44,15 +44,18 @@ public class aMediumQuestions {
 
     }
 
-    // P659
+    // P659 NO
     public static boolean isPossible(int[] nums) {
+
+        return false;
+        /*
         if (nums.length < 3) {
             return false;
         }
         for (int i = 0; i < nums.length; i++) {
             nums[i] += 1000;
         }
-        int[] freq = new int[2001];
+        int[] freq = new int[2001]; // 0,... 2000
         for (int i : nums) {
             freq[i]++;
         }
@@ -86,7 +89,7 @@ public class aMediumQuestions {
                 }
             }
             return true;
-        }
+        } */
 
     /*
      * Map<Integer, Integer> mp = new HashMap<>(); //make map a list that can do
@@ -112,5 +115,6 @@ public class aMediumQuestions {
      * 
      * return true;
      */
-    }
+    
+}
 }
