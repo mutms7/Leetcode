@@ -147,4 +147,87 @@ public class aMediumQuestions {
         }
         return num;
     }
+
+
+    // P1525 OK
+    public static int numSplits(String s) {
+        if (s.length() == 1) {
+            return 0;
+        }
+        HashMap<Character, Integer> firstapp = new HashMap<>();
+        HashMap<Character, Integer> lastapp = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) { 
+            if (!firstapp.containsKey(s.charAt(i))) {
+                firstapp.put(s.charAt(i), i); //makes a map of where each letter occurs first
+            }
+            if (!lastapp.containsKey(s.charAt(s.length()-1-i))) {
+                lastapp.put(s.charAt(s.length()-1-i), s.length()-1-i); //makes a map of where each letter occurs last
+            }
+        }
+
+        ArrayList<Integer> firsts = new ArrayList<>(firstapp.values());
+        ArrayList<Integer> lasts = new ArrayList<>(lastapp.values());
+
+        ArrayList<Integer> sigs = new ArrayList<>();
+        for (int i : firsts) {
+            if (!sigs.contains(i)) {
+                sigs.add(i);
+            }
+        }
+        for (int i : lasts) {
+            if (!sigs.contains(i)) {
+                sigs.add(i);
+            }
+        }
+
+        Collections.sort(firsts); //sorted list of all the places where a letter appears for the first time
+        Collections.sort(lasts); //sorted list of all the places where a letter appears for the last time
+        Collections.sort(sigs); //sorted list of all the significant spots where the "good" can start and end
+
+        for (int i = 0; i < sigs.size(); i++) { //going through all sig spots
+            int beforeandthere = 0;
+            for (int j = 0; j < firsts.size(); j++) { //how many first appearance letters are before and including current sig spot
+                if (firsts.get(j) > sigs.get(i)) {
+                    break;
+                }
+                beforeandthere++; 
+            }
+            int after = 0;
+            for (int j = lasts.size()-1; j >= 0; j--) { //how many last appearnace letters are after current sig spot
+                if (lasts.get(j) <= sigs.get(i)) {
+                    break;
+                }
+                after++; 
+            }
+            if (beforeandthere == after) {
+                return sigs.get(i+1) - sigs.get(i);
+            }
+        }
+        
+        /*
+        int start = 0;
+        int end = s.length()-1;
+
+        int pos1 = 0;
+        int pos2 = s.length()-1;
+
+        int diff1 = 0;
+        int diff2 = 0;
+        while (true) {
+            if (diff1 <= diff2) {
+
+            } else {
+
+            }
+            if (firstapp.containsValue(i)) {
+                st = i;
+            }
+            if (lastapp.containsValue(s.length()-1-i)) {
+                en = s.length()-1-i;
+            }
+        }*/
+
+
+        return 0;
+    }
 }
