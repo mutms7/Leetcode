@@ -12,20 +12,7 @@ public class aMediumQuestions {
         return "";
     }
 
-    // P151 OK
-    public static String reverseWords(String s) {
-        String[] spaces = s.split(" ");
-        String reversed = "";
-        for (int i = spaces.length - 1; i >= 0; i--) {
-            if (!spaces[i].equals("")) {
-                reversed = reversed + spaces[i] + " ";
-            }
-        }
-        reversed = reversed.substring(0, reversed.length() - 1);
-        return reversed;
-    }
-
-    // P128 YES
+    // P128 OK
     public static int longestConsecutive(int[] nums) {
         if (nums.length == 0) {
             return 0;
@@ -48,6 +35,19 @@ public class aMediumQuestions {
         }
         return max;
 
+    }
+
+    // P151 OK
+    public static String reverseWords(String s) {
+        String[] spaces = s.split(" ");
+        String reversed = "";
+        for (int i = spaces.length - 1; i >= 0; i--) {
+            if (!spaces[i].equals("")) {
+                reversed = reversed + spaces[i] + " ";
+            }
+        }
+        reversed = reversed.substring(0, reversed.length() - 1);
+        return reversed;
     }
 
     // P659 NO

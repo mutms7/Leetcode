@@ -16,7 +16,7 @@ Here is my [LeetCode profile](https://leetcode.com/u/Mutms7/), displaying my act
 Solutions are organized by question difficulty:
 - [Easy Questions](./Leetcode/src/aEasyQuestions.java) (Many are not saved on VS Code, as I solved them quite quickly and submitted solutions to LeetCode)
 - [Medium Questions](./Leetcode/src/aMediumQuestions.java)
-- [Hard Questions](./Leetcode/src/aHardQuestions.java)
+- [Hard Questions](./Leetcode/src/HardQuestions.java)
 
 In each file, solutions are static methods with a note indicating the LeetCode problem number and the solution status. 
 
