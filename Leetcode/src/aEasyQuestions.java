@@ -9,7 +9,7 @@ public class aEasyQuestions {
     // PX
     public static String test(String s) {
         
-        return "hy";
+        return "y";
     }
 
     
