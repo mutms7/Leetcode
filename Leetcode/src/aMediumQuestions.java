@@ -12,6 +12,23 @@ public class aMediumQuestions {
         return "";
     }
 
+    // P11 OK
+
+    public static int maxArea(int[] height) {
+        int i = 0;
+        int j = height.length-1;
+        int max = 0;
+        while (i < j) {
+            max = Math.max(max, (j-i)*Math.min(height[i],height[j]));
+            if (height[i] >= height[j]) {
+                j--;
+            } else {
+                i++;
+            }
+        }
+        return max;
+    }
+
     // P128 OK
     public static int longestConsecutive(int[] nums) {
         if (nums.length == 0) {
@@ -48,6 +65,22 @@ public class aMediumQuestions {
         }
         reversed = reversed.substring(0, reversed.length() - 1);
         return reversed;
+    }
+
+    // P167 OK
+    public static int[] twoSum(int[] numbers, int target) {
+        int l = 0;
+        int h = numbers.length-1;
+        while (l < h) {
+            if (numbers[l] + numbers[h] > target) {
+                h--;
+            } else if (numbers[l] + numbers[h] < target) {
+                l++;
+            } else {
+                return new int[] {l+1, h+1};
+            }
+        }
+        return null;
     }
 
     // P659 NO
