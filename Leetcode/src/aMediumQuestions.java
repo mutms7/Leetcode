@@ -3,7 +3,7 @@ import java.util.*;
 public class aMediumQuestions {
 
     public static void main(String[] args) {
-        System.out.println(isPossible(new int[] {1,2,3,3,4,5}));
+        System.out.println(threeSum(new int[] {2,-3,0,-2,-5,-5,-4,1,2,-2,2,0,2,-4,5,5,-10}));
     }
 
     // PX
@@ -27,6 +27,37 @@ public class aMediumQuestions {
             }
         }
         return max;
+    }
+
+    // P15 NO TLE
+    
+    public static List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> sols = new ArrayList<>();
+        Arrays.sort(nums);
+        int f = 0;
+        int l = nums.length-1;
+        for (int i = 1; i <= nums.length-2; i++) {
+            while (f < i && i < l) {
+                if (nums[f] + nums[i] + nums[l] > 0) {
+                    l--;
+                } else if (nums[f] + nums[i] + nums[l] < 0) {
+                    f++;
+                } else {
+                    sols.add(Arrays.asList(nums[f], nums[i], nums[l]));
+                    l--;
+                    f++;
+                }
+            }
+            f = 0;
+            l = nums.length-1;
+        }
+        List<List<Integer>> uniqsols = new ArrayList<>();
+        for (int i = 0; i < sols.size(); i++) {
+            if (!uniqsols.contains(sols.get(i))) {
+                uniqsols.add(sols.get(i));
+            }
+        }
+        return uniqsols;
     }
 
     // P128 OK
