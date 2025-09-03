@@ -3,7 +3,7 @@ import java.util.*;
 public class aMediumQuestions {
 
     public static void main(String[] args) {
-        System.out.println(threeSum(new int[] {2,-3,0,-2,-5,-5,-4,1,2,-2,2,0,2,-4,5,5,-10}));
+        System.out.println(subarraySum(new int[] {1,2,3}, 3));
     }
 
     // PX
@@ -114,6 +114,24 @@ public class aMediumQuestions {
         return null;
     }
 
+    // P560
+    public static int subarraySum(int[] nums, int k) {
+        int[] presum = new int[nums.length+1];
+        presum[1] = nums[0];
+        for (int i = 2; i < presum.length; i++) {
+            presum[i] = presum[i-1] + nums[i-1];
+        }
+        int sbrry = 0;
+        for (int i = 0; i < presum.length-1; i++) {
+            for (int j = i+1; j < presum.length; j++) {
+                if (presum[j] - presum[i] == k) {
+                    sbrry++;
+                }
+            }
+        }
+        return sbrry;
+    }
+
     // P659 NO
     public static boolean isPossible(int[] nums) {
 
@@ -187,6 +205,8 @@ public class aMediumQuestions {
      */
     
     }
+
+    
 
 
     // P792 OK
