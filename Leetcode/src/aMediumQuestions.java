@@ -3,7 +3,7 @@ import java.util.*;
 public class aMediumQuestions {
 
     public static void main(String[] args) {
-        System.out.println(subarraySum(new int[] {1,2,3}, 3));
+        System.out.println(subarraysDivByK(new int[] {4,5,0,-2,-3,1}, 5));
     }
 
     // PX
@@ -114,7 +114,7 @@ public class aMediumQuestions {
         return null;
     }
 
-    // P560
+    // P560 OK
     public static int subarraySum(int[] nums, int k) {
         int[] presum = new int[nums.length+1];
         presum[1] = nums[0];
@@ -230,6 +230,25 @@ public class aMediumQuestions {
             }
         }
         return num;
+    }
+
+    // P974 OK
+
+    public static int subarraysDivByK(int[] nums, int k) {
+        int[] sums = new int[nums.length+1];
+        sums[1] = (nums[0]+k*10000)%k;
+        for (int i = 2; i < nums.length+1; i++) {
+            sums[i] = (sums[i-1] + nums[i-1] +k*10000)%k;
+        }
+        int count = 0;
+        for (int i = 0; i < sums.length-1; i++) {
+            for (int j = i+1; j < sums.length; j++) {
+                if ((sums[j] - sums[i]) == 0) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
 
