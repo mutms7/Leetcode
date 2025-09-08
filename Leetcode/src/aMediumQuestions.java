@@ -3,7 +3,7 @@ import java.util.*;
 public class aMediumQuestions {
 
     public static void main(String[] args) {
-        System.out.println(subarraysDivByK(new int[] {4,5,0,-2,-3,1}, 5));
+        System.out.println(checkSubarraySum(new int[] {23,2,6,4,7}, 13));
     }
 
     // PX
@@ -112,6 +112,23 @@ public class aMediumQuestions {
             }
         }
         return null;
+    }
+
+    // P523
+    public static boolean checkSubarraySum(int[] nums, int k) {
+        int[] sums = new int[nums.length+1];
+        for (int i = 1; i < sums.length; i++) {
+            sums[i] = (sums[i-1] + nums[i-1])%k;
+        }
+        boolean[] seen = new boolean[k];
+        for (int i = 0; i < sums.length; i++) {
+            if (seen[sums[i]] || seen[(k-sums[i])%k]) {
+                return true;
+            } else {
+                seen[sums[i]] = true;
+            }
+        }
+        return false;
     }
 
     // P560 OK
