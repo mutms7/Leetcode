@@ -3,7 +3,7 @@ import java.util.*;
 public class aMediumQuestions {
 
     public static void main(String[] args) {
-        System.out.println(checkSubarraySum(new int[] {23,2,6,4,7}, 13));
+        System.out.println(checkSubarraySum(new int[] {1,0}, 2));
     }
 
     // PX
@@ -116,16 +116,25 @@ public class aMediumQuestions {
 
     // P523
     public static boolean checkSubarraySum(int[] nums, int k) {
-        int[] sums = new int[nums.length+1];
+        if (nums.length < 2) {
+            return false;
+        }
+        if (nums.length == 2) {
+            return ((nums[0]+nums[1])%k == 0);
+        }
+        int[] sums = new int[nums.length];
+        sums[0] = nums[0]%k;
         for (int i = 1; i < sums.length; i++) {
-            sums[i] = (sums[i-1] + nums[i-1])%k;
+            sums[i] = (sums[i-1] + nums[i])%k;
         }
         boolean[] seen = new boolean[k];
-        for (int i = 0; i < sums.length; i++) {
-            if (seen[sums[i]] || seen[(k-sums[i])%k]) {
+        int queue = sums[0];
+        for (int i = 1; i < sums.length; i++) {
+            if (seen[sums[i]]) {
                 return true;
             } else {
-                seen[sums[i]] = true;
+                seen[queue] = true;
+                queue = sums[i];
             }
         }
         return false;
