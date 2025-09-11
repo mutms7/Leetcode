@@ -114,7 +114,7 @@ public class aMediumQuestions {
         return null;
     }
 
-    // P523
+    // P523 NO
     public static boolean checkSubarraySum(int[] nums, int k) {
         if (nums.length < 2) {
             return false;
@@ -138,6 +138,38 @@ public class aMediumQuestions {
             }
         }
         return false;
+    }
+
+    // P525
+    public static int findMaxLength(int[] nums) {
+        int[] sums = new int[nums.length];
+        if (nums[0] == 0) {
+            sums[0] = -1;
+        } else {
+            sums[0] = 1;
+        }
+        for (int i = 1; i < sums.length; i++) {
+            int change;
+            if (nums[i] == 0) {
+                change = -1;
+            } else {
+                change = 1;
+            }
+            sums[i] = sums[i-1] + change;
+        }
+        int[] seen = new int[200001];
+        Arrays.fill(seen, -1);
+        int max = 0;
+        for (int i = 0; i < sums.length; i++) {
+            int count = sums[i] + 100000;
+            if (seen[count] == -1) {
+                seen[count] = i;
+            } else {
+                max = Math.max(max, i - seen[count]+1);
+            }
+        }
+
+        return max;
     }
 
     // P560 OK
