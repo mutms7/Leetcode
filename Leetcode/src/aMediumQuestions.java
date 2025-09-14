@@ -2,8 +2,66 @@ import java.util.*;
 
 public class aMediumQuestions {
 
+    // PX
+    public static String test(String s) {
+        
+        return "";
+    }
+
     public static void main(String[] args) {
-        System.out.println(findMaxLength(new int[] {0,1}));
+        System.out.println(findAnagrams("a", "a"));
+    }
+
+    // P438
+    public static List<Integer> findAnagrams(String s, String p) {
+        LinkedList<Integer> indices = new LinkedList<>();
+        if (p.length() > s.length()) {
+            return indices;
+        }
+        Map<Character, Integer> target = new HashMap<>();
+        Map<Character, Integer> current = new HashMap<>();
+        for (int i = 'a'; i < 'z'+1; i++) {
+            target.put((char) i, 0);
+            current.put((char) i, 0);
+        }
+
+
+        for (int i = 0; i < p.length(); i++) {
+            target.put(p.charAt(i), target.getOrDefault(p.charAt(i), 0) + 1);
+            current.put(p.charAt(i), 0);
+        }
+        for (int i = 0; i < p.length(); i++) {
+            current.put(s.charAt(i), current.getOrDefault(s.charAt(i), 0) + 1);
+        }
+        boolean match = true;
+        for (int i = 'a'; i <= 'z'; i++) {
+            if (!target.get((char) i).equals(current.get((char) i))) {
+                match = false;
+                break;
+            }
+        }
+        if (match) {
+            indices.add(0);
+        }
+
+        for (int i = 1; i + p.length()-1 < s.length(); i++) {
+            current.put(s.charAt(i - 1), current.getOrDefault(s.charAt(i - 1), 0) - 1);
+            current.put(s.charAt(i + p.length()-1), current.getOrDefault(s.charAt(i + p.length()-1), 0) + 1);
+            boolean match1 = true;
+            for (int j = 'a'; j <= 'z'; j++) {
+                if (!target.get((char) j).equals(current.get((char) j))) {
+                    match1 = false;
+                    break;
+                }
+            }
+            if (match1) {
+                indices.add(i);
+            }
+        }
+ 
+
+
+        return indices;
     }
 
     // P525
@@ -31,12 +89,6 @@ public class aMediumQuestions {
         }
 
         return max;
-    }
-
-    // PX
-    public static String test(String s) {
-        
-        return "";
     }
 
     // P11 OK
