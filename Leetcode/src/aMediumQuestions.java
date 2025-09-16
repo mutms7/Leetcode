@@ -12,6 +12,47 @@ public class aMediumQuestions {
         System.out.println(findAnagrams("a", "a"));
     }
 
+    public static boolean checkInclusion(String s1, String s2) {
+        if (s1.length() > s2.length()) {
+            return false;
+        }
+        int[] target = new int[26];
+        int[] current = new int[26];
+        for (int i = 0; i < s1.length(); i++) {
+            target[s1.charAt(i)-'a']++;
+        }
+        for (int i = 0; i < s1.length(); i++) {
+            current[s2.charAt(i)-'a']++;
+        }
+        boolean match = true;
+        for (int i = 0; i < 26; i++) {
+            if (target[i] != current[i]) {
+                match = false;
+                break;
+            }
+        }
+        if (match) {
+            return true;
+        }
+        for (int i = 1; i + s1.length()-1 < s2.length(); i++) {
+            current[s2.charAt(i - 1)-'a']--;
+            current[s2.charAt(i + s1.length()-1)-'a']++;
+            boolean match1 = true;
+            for (int j = 0; j < 26; j++) {
+                if (target[j] != current[j]) {
+                    match1 = false;
+                    break;
+                }
+            }
+            if (match1) {
+                return true;
+            }
+        }
+
+
+        return false;
+    }
+
     // P438
     public static List<Integer> findAnagrams(String s, String p) {
         LinkedList<Integer> indices = new LinkedList<>();
