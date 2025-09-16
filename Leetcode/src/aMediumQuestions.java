@@ -11,7 +11,36 @@ public class aMediumQuestions {
     public static void main(String[] args) {
         System.out.println(findAnagrams("a", "a"));
     }
+    
+    //2461
+    public long maximumSubarraySum(int[] nums, int k) {
+        int[] occurs = new int[100001];
+        long sum = 0;
+        long maxsum = Integer.MIN_VALUE;
+        boolean valid = true;
+        for (int i = 0; i < k; i++) {
+            int current = nums[i];
+            sum += current;
+            if (occurs[current] > 0) {
+                valid = false;
+            }
+            occurs[current]++;
+        }
+        if (valid) {
+            maxsum = Math.max(maxsum, sum);
+        }
+        for (int i = 1; i+k-1 < nums.length; i++) {
+            sum -= nums[i-1];
+            occurs[nums[i-1]]--;
+            sum += nums[i+k-1];
+            occurs[nums[i+k-1]]++;
 
+        }
+
+        return 0;
+    }
+
+    // P567 OK
     public static boolean checkInclusion(String s1, String s2) {
         if (s1.length() > s2.length()) {
             return false;
@@ -53,7 +82,7 @@ public class aMediumQuestions {
         return false;
     }
 
-    // P438
+    // P438 OK
     public static List<Integer> findAnagrams(String s, String p) {
         LinkedList<Integer> indices = new LinkedList<>();
         if (p.length() > s.length()) {
