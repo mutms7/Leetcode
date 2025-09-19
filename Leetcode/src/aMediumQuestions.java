@@ -34,10 +34,15 @@ public class aMediumQuestions {
             occurs[nums[i-1]]--;
             sum += nums[i+k-1];
             occurs[nums[i+k-1]]++;
-
+            for (int j = 0; j < occurs.length; j++) {
+                if (occurs[j] > 1) {
+                    continue;
+                }
+            }
+            maxsum = Math.max(maxsum, sum);
         }
 
-        return 0;
+        return maxsum;
     }
 
     // P567 OK
