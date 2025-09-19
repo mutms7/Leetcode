@@ -13,10 +13,10 @@ public class aMediumQuestions {
     }
     
     //2461
-    public long maximumSubarraySum(int[] nums, int k) {
+    public static long maximumSubarraySum(int[] nums, int k) {
         int[] occurs = new int[100001];
         long sum = 0;
-        long maxsum = Integer.MIN_VALUE;
+        long maxsum = 0;
         boolean valid = true;
         for (int i = 0; i < k; i++) {
             int current = nums[i];
@@ -29,14 +29,14 @@ public class aMediumQuestions {
         if (valid) {
             maxsum = Math.max(maxsum, sum);
         }
-        for (int i = 1; i+k-1 < nums.length; i++) {
+        ABC : for (int i = 1; i+k-1 < nums.length; i++) {
             sum -= nums[i-1];
             occurs[nums[i-1]]--;
             sum += nums[i+k-1];
             occurs[nums[i+k-1]]++;
             for (int j = 0; j < occurs.length; j++) {
                 if (occurs[j] > 1) {
-                    continue;
+                    continue ABC;
                 }
             }
             maxsum = Math.max(maxsum, sum);
