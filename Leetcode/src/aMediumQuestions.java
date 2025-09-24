@@ -9,7 +9,7 @@ public class aMediumQuestions {
     }
 
     public static void main(String[] args) {
-        System.out.println(findAnagrams("a", "a"));
+        System.out.println(lengthOfLongestSubstring("abcabcbb"));
     }
     
     // P3
@@ -17,16 +17,17 @@ public class aMediumQuestions {
         HashMap<Character, Integer> occurance = new HashMap<>();
         int max = 0;
         int start = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (occurance.containsKey(s.charAt(i)) || !(occurance.get(s.charAt(i)) == -1)) {
-                
+        for (int i = 0; i < s.length(); i++) { // abcabcbb
+            char cur = s.charAt(i);
+            if (occurance.containsKey(cur)) {
+                start = Math.max(start, occurance.get(cur)+1);
             }
-            occurance.put(s.charAt(i), i);
-            
-        }
-        
+            occurance.put(cur, i);
+            max = Math.max(max, i-start+1);
 
-        return 0;
+        }
+
+        return max;
     }
 
     //2461
