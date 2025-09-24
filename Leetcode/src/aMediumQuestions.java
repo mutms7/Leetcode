@@ -12,6 +12,23 @@ public class aMediumQuestions {
         System.out.println(findAnagrams("a", "a"));
     }
     
+    // P3
+    public static int lengthOfLongestSubstring(String s) {
+        HashMap<Character, Integer> occurance = new HashMap<>();
+        int max = 0;
+        int start = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (occurance.containsKey(s.charAt(i)) || !(occurance.get(s.charAt(i)) == -1)) {
+                
+            }
+            occurance.put(s.charAt(i), i);
+            
+        }
+        
+
+        return 0;
+    }
+
     //2461
     public static long maximumSubarraySum(int[] nums, int k) {
         int[] occurs = new int[100001];
