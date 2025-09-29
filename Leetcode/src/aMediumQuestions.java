@@ -9,9 +9,36 @@ public class aMediumQuestions {
     }
 
     public static void main(String[] args) {
-        System.out.println(lengthOfLongestSubstring("abcabcbb"));
+        System.out.println(characterReplacement("ABAA", 0));
     }
     
+
+    // P424
+        
+    public static int maxelement(int[] k) {
+        int max = 0;
+        for (int i = 0; i < k.length; i++) {
+            max = Math.max(max, k[i]);
+        }
+
+        return max;
+    }
+    public static int characterReplacement(String s, int k) {
+        int[] occurs = new int[26];
+        int start = 0;
+        int max = 0;
+        for (int i = 0; i < s.length(); i++) {
+            while (i-start > maxelement(occurs)+k) {
+                occurs[s.charAt(start)-'A']--;
+                start++;
+            }
+            occurs[s.charAt(i)-'A']++;
+            max = Math.max(max, Math.min(maxelement(occurs)+k, s.length()));
+        }
+
+        return max;
+    }
+
     // P3
     public static int lengthOfLongestSubstring(String s) {
         HashMap<Character, Integer> occurance = new HashMap<>();
