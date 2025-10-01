@@ -13,6 +13,33 @@ public class aMediumQuestions {
     }
     
 
+    // P209
+    public static int minSubArrayLen(int target, int[] nums) {
+        int min = Integer.MAX_VALUE;
+        
+        int[] sums = new int[nums.length+1];
+        sums[0] = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sums[i+1] = sums[i] + nums[i];
+        }
+        
+        int start = 0;
+        for (int i = 1; i < sums.length; i++) {
+            if (start >= i) {
+                continue;
+            } 
+            while (sums[i]-sums[start] >= target) {
+                min = Math.min(min, i-start);
+                start++;
+            }
+        }
+
+        if (min == Integer.MAX_VALUE) {
+            return 0;
+        }
+        return min;
+    }   
+
     // P424
         
     public static int maxelement(int[] k) {
