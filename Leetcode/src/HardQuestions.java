@@ -4,7 +4,7 @@ public class HardQuestions {
 
     public static void main(String[] args) {
         System.out.println(minWindow("ADOBECODEBANC", "ABC"));
-        System.out.println("BANC".substring(0, 3));
+        System.out.println("BANC".substring(0, 4));
     }
 
     // PX
@@ -45,7 +45,7 @@ public class HardQuestions {
                     }
                 }
                 if (minsub.equals("") || minsub.length() > i-start) {
-                    minsub = s.substring(start, i);
+                    minsub = s.substring(start, i+1);
                 }
             }
         }
