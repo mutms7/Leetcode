@@ -9,9 +9,48 @@ public class aMediumQuestions {
     }
 
     public static void main(String[] args) {
-        System.out.println(characterReplacement("ABAA", 0));
+        System.out.println(minWindow("ADOBECODEBANC", "ABC"));
     }
     
+    //P76
+    public static String minWindow(String s, String t) {
+        int[] tcount = new int[58];
+        int[] scount = new int[58];
+
+        for (int i = 0; i < t.length(); i++) {
+            tcount[t.charAt(i)-'A']++;
+        }
+
+        int start = 0;
+        String minsub = "";
+        for (int i = 0; i < s.length(); i++) {
+            scount[s.charAt(i)-'A']++;
+            boolean included = true;
+            for (int j = 0; j < scount.length; j++) {
+                if (scount[j] < tcount[j]) {
+                    included = false;
+                    break;
+                }
+            }
+            while (included) {
+                scount[s.charAt(start)-'A']--;
+                start++;
+                for (int j = 0; j < scount.length; j++) {
+                    if (scount[j] < tcount[j]) {
+                        included = false;
+                        scount[s.charAt(start-1)-'A']++;
+                        start--;
+                        break;
+                    }
+                }
+                if (minsub.equals("") || minsub.length() > i-start) {
+                    minsub = s.substring(start, i);
+                }
+            }
+        }
+
+        return minsub;
+    }
 
     // P209
     public static int minSubArrayLen(int target, int[] nums) {
