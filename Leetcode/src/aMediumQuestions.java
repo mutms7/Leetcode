@@ -9,7 +9,30 @@ public class aMediumQuestions {
     }
 
     public static void main(String[] args) {
-        System.out.println("BANC".substring(0, 3));
+        System.out.println(maxSubarraySumCircular(new int[] {5,-3,5}));
+    }
+
+    // P918
+    public static int maxSubarraySumCircular(int[] nums) {
+        int max = nums[0];
+        int current = nums[0];
+        int maxindex = 0;
+        for (int i = 1; i < nums.length; i++) {
+            current = Math.max(nums[i], current+nums[i]);
+            if (max <= current) {
+                max = current;
+                maxindex = i;
+            }
+        }
+        current = 0;
+        for (int i = 0; i < maxindex; i++) {
+            current = current+nums[i];
+            if (max <= max+current) {
+                max = max+current;
+            }
+        }
+
+        return max;
     }
     
     // P53
