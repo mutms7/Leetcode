@@ -14,25 +14,32 @@ public class aMediumQuestions {
 
     // P918
     public static int maxSubarraySumCircular(int[] nums) {
+        if (nums.length == 1) {
+            return nums[0];
+        }
         int max = nums[0];
         int current = nums[0];
-        int maxindex = 0;
         for (int i = 1; i < nums.length; i++) {
             current = Math.max(nums[i], current+nums[i]);
             if (max <= current) {
                 max = current;
-                maxindex = i;
             }
         }
-        current = 0;
-        for (int i = 0; i < maxindex; i++) {
-            current = current+nums[i];
-            if (max <= max+current) {
-                max = max+current;
+        
+        int min = nums[1];
+        current = nums[1];
+        for (int i = 2; i < nums.length; i++) {
+            current = Math.min(nums[i], current+nums[i]);
+            if (min >= current) {
+                min = current;
             }
+        }
+        int total = 0;
+        for (int i = 0; i < nums.length; i++) {
+            total = total+nums[i];
         }
 
-        return max;
+        return Math.max(max, total-min);
     }
     
     // P53
