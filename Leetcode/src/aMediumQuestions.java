@@ -12,6 +12,35 @@ public class aMediumQuestions {
         System.out.println(maxSubarraySumCircular(new int[] {5,-3,5}));
     }
 
+    // P152
+    public static int maxProduct(int[] nums) {
+        int current = nums[0];
+        boolean pos = true;
+        if (nums[0] < 0) {
+            pos = false;
+        }
+        int max = Integer.MIN_VALUE;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                if (pos) {
+                    max = Math.max(0, current);
+                } else {
+                    max = Math.max(0, -1*current);
+                }
+                pos = true;
+                continue;
+            }
+            current = Math.max(current, current* Math.abs(nums[i])); // if 0 and negative
+            if (nums[i] < 0) {
+                pos = !pos;
+            }
+            if (pos && max <= current) {
+                max = current;
+            }
+        }
+        return max;
+    }
+
     // P918
     public static int maxSubarraySumCircular(int[] nums) {
         if (nums.length == 1) {
