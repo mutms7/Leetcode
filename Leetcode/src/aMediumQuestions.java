@@ -9,17 +9,17 @@ public class aMediumQuestions {
     }
 
     public static void main(String[] args) {
-        System.out.println(maxSubarraySumCircular(new int[] {5,-3,5}));
+        System.out.println(maxProduct(new int[] {3,-1,4}));
     }
 
     // P152
     public static int maxProduct(int[] nums) {
-        int current = nums[0];
+        int current = Math.abs(nums[0]);
         boolean pos = true;
         if (nums[0] < 0) {
             pos = false;
         }
-        int max = Integer.MIN_VALUE;
+        int max = nums[0];
         for (int i = 1; i < nums.length; i++) {
             if (nums[i] == 0) {
                 if (pos) {
@@ -28,7 +28,11 @@ public class aMediumQuestions {
                     max = Math.max(0, -1*current);
                 }
                 pos = true;
+                current = 0;
                 continue;
+            }
+            if (current == 0) {
+                current = 1;
             }
             current = Math.max(current, current* Math.abs(nums[i])); // if 0 and negative
             if (nums[i] < 0) {
