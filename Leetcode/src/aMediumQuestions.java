@@ -14,35 +14,21 @@ public class aMediumQuestions {
 
     // P152
     public static int maxProduct(int[] nums) {
-        int current = Math.abs(nums[0]);
-        boolean pos = true;
-        if (nums[0] < 0) {
-            pos = false;
-        }
-        int max = nums[0];
+        int max = nums[0], min = nums[0], ans = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            if (nums[i] == 0) {
-                if (pos) {
-                    max = Math.max(0, current);
-                } else {
-                    max = Math.max(0, -1*current);
-                }
-                pos = true;
-                current = 0;
-                continue;
+            int n = nums[i];
+            if (n < 0) {
+                int temp = max;
+                max = min;
+                min = temp;
             }
-            if (current == 0) {
-                current = 1;
-            }
-            current = Math.max(current, current* Math.abs(nums[i])); // if 0 and negative
-            if (nums[i] < 0) {
-                pos = !pos;
-            }
-            if (pos && max <= current) {
-                max = current;
-            }
+            max = Math.max(n, max*n);
+            min = Math.min(n, min*n);
+
+            ans = Math.max(ans, max);
         }
-        return max;
+        
+        return ans;
     }
 
     // P918
