@@ -9,7 +9,20 @@ public class aMediumQuestions {
     }
 
     public static void main(String[] args) {
-        System.out.println(maxProduct(new int[] {3,-1,4}));
+        System.out.println(maxScoreSightseeingPair(new int[] {1,2}));
+    }
+
+    // P1014
+    public static int maxScoreSightseeingPair(int[] values) {
+        int start = values[0];
+        int max = start+values[1]-1;
+        for (int i = 2; i < values.length; i++) {
+            start--;
+            start = Math.max(start, values[i-1]);
+            max = Math.max(max, start + values[i]-1);
+        }
+
+        return max;
     }
 
     // P152
