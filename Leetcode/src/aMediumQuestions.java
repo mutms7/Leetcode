@@ -9,7 +9,41 @@ public class aMediumQuestions {
     }
 
     public static void main(String[] args) {
-        System.out.println(maxScoreSightseeingPair(new int[] {1,2}));
+        System.out.println(spiralOrder(new int[][] {{1,2},{3,4}}));
+    }
+
+    // P54
+    public static List<Integer> spiralOrder(int[][] matrix) {
+        ArrayList<Integer> spiral = new ArrayList<>();
+        int top = 0, bottom = matrix.length-1, left = 0, right = matrix[0].length-1, size = matrix.length*matrix[0].length;
+        int a = 0, b = 0;
+        int dirver = 0, dirhor = 1;
+        for (int i = 0; i < size; i++) {
+            spiral.add(matrix[a][b]);
+            
+            if (a == top && dirver == -1) {
+                dirver = 0;
+                dirhor = 1;
+                left++;
+            } else if (b == right && dirhor == 1) {
+                dirver = 1;
+                dirhor = 0;
+                top++;
+            } else if (a == bottom && dirver == 1) {
+                dirver = 0;
+                dirhor = -1;
+                right--;
+            } else if (b == left && dirhor == -1) {
+                dirver = -1;
+                dirhor = 0;
+                bottom--;
+            }
+
+            a += dirver;
+            b += dirhor;
+        }
+
+        return spiral;
     }
 
     // P1014
