@@ -22,7 +22,7 @@ public class aMediumQuestions {
             for (int j = 0; j < n; j++) {
                 if (matrix[i][j] == 0) {
                     mzero[i] = true;
-                    mzero[j] = true;
+                    nzero[j] = true;
                 }
             }
         }
