@@ -17,6 +17,9 @@ public class aMediumQuestions {
         int start = 0;
         int x = matrix.length-1;
         int length = matrix.length-1;
+        while (start < x) {
+
+        
         for (int i = start; i < x-1; i++) {
             int temp = matrix[start][i];
             matrix[start][i] = matrix[length-i][start];
@@ -26,6 +29,7 @@ public class aMediumQuestions {
         }
         start++;
         x--;
+    }
     }
 
     // P54
