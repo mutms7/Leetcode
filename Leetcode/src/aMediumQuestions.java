@@ -16,8 +16,8 @@ public class aMediumQuestions {
     public void rotate(int[][] matrix) {
         int start = 0;
         int x = matrix.length-1;
-        int length = matrix.length;
-        for (int i = start; i < x; i++) {
+        int length = matrix.length-1;
+        for (int i = start; i < x-1; i++) {
             int temp = matrix[start][i];
             matrix[start][i] = matrix[length-i][start];
             matrix[length-i][start] = matrix[length-start][length-i];
