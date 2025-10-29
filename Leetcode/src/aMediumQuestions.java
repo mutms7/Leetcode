@@ -4,43 +4,43 @@ public class aMediumQuestions {
 
     // PX
     public static String test(String s) {
-        
+
         return "";
     }
 
     public static void main(String[] args) {
-        System.out.println(spiralOrder(new int[][] {{1,2},{3,4}}));
+        System.out.println(spiralOrder(new int[][] { { 1, 2 }, { 3, 4 } }));
     }
 
     // P48
     public void rotate(int[][] matrix) {
         int start = 0;
-        int x = matrix.length-1;
-        int length = matrix.length-1;
+        int x = matrix.length - 1;
+        int length = matrix.length - 1;
         while (start < x) {
 
-        
-        for (int i = start; i < x-1; i++) {
-            int temp = matrix[start][i];
-            matrix[start][i] = matrix[length-i][start];
-            matrix[length-i][start] = matrix[length-start][length-i];
-            matrix[length-start][length-i] = matrix[i][length-start];
-            matrix[i][length-start] = temp;
+            for (int i = start; i < x; i++) {
+                int temp = matrix[start][i];
+                matrix[start][i] = matrix[length - i][start];
+                matrix[length - i][start] = matrix[length - start][length - i];
+                matrix[length - start][length - i] = matrix[i][length - start];
+                matrix[i][length - start] = temp;
+            }
+            start++;
+            x--;
         }
-        start++;
-        x--;
-    }
     }
 
     // P54
     public static List<Integer> spiralOrder(int[][] matrix) {
         ArrayList<Integer> spiral = new ArrayList<>();
-        int top = 0, bottom = matrix.length-1, left = 0, right = matrix[0].length-1, size = matrix.length*matrix[0].length;
+        int top = 0, bottom = matrix.length - 1, left = 0, right = matrix[0].length - 1,
+                size = matrix.length * matrix[0].length;
         int a = 0, b = 0;
         int dirver = 0, dirhor = 1;
         for (int i = 0; i < size; i++) {
             spiral.add(matrix[a][b]);
-            
+
             if (a == top && dirver == -1) {
                 dirver = 0;
                 dirhor = 1;
@@ -69,11 +69,11 @@ public class aMediumQuestions {
     // P1014
     public static int maxScoreSightseeingPair(int[] values) {
         int start = values[0];
-        int max = start+values[1]-1;
+        int max = start + values[1] - 1;
         for (int i = 2; i < values.length; i++) {
             start--;
-            start = Math.max(start, values[i-1]);
-            max = Math.max(max, start + values[i]-1);
+            start = Math.max(start, values[i - 1]);
+            max = Math.max(max, start + values[i] - 1);
         }
 
         return max;
@@ -89,12 +89,12 @@ public class aMediumQuestions {
                 max = min;
                 min = temp;
             }
-            max = Math.max(n, max*n);
-            min = Math.min(n, min*n);
+            max = Math.max(n, max * n);
+            min = Math.min(n, min * n);
 
             ans = Math.max(ans, max);
         }
-        
+
         return ans;
     }
 
@@ -106,28 +106,28 @@ public class aMediumQuestions {
         int max = nums[0];
         int current = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            current = Math.max(nums[i], current+nums[i]);
+            current = Math.max(nums[i], current + nums[i]);
             if (max <= current) {
                 max = current;
             }
         }
-        
+
         int min = nums[1];
         current = nums[1];
         for (int i = 2; i < nums.length; i++) {
-            current = Math.min(nums[i], current+nums[i]);
+            current = Math.min(nums[i], current + nums[i]);
             if (min >= current) {
                 min = current;
             }
         }
         int total = 0;
         for (int i = 0; i < nums.length; i++) {
-            total = total+nums[i];
+            total = total + nums[i];
         }
 
-        return Math.max(max, total-min);
+        return Math.max(max, total - min);
     }
-    
+
     // P53
     public static int maxSubArray(int[] nums) {
         int max = nums[0];
@@ -142,20 +142,20 @@ public class aMediumQuestions {
     // P209
     public static int minSubArrayLen(int target, int[] nums) {
         int min = Integer.MAX_VALUE;
-        
-        int[] sums = new int[nums.length+1];
+
+        int[] sums = new int[nums.length + 1];
         sums[0] = 0;
         for (int i = 0; i < nums.length; i++) {
-            sums[i+1] = sums[i] + nums[i];
+            sums[i + 1] = sums[i] + nums[i];
         }
-        
+
         int start = 0;
         for (int i = 1; i < sums.length; i++) {
             if (start >= i) {
                 continue;
-            } 
-            while (sums[i]-sums[start] >= target) {
-                min = Math.min(min, i-start);
+            }
+            while (sums[i] - sums[start] >= target) {
+                min = Math.min(min, i - start);
                 start++;
             }
         }
@@ -164,10 +164,10 @@ public class aMediumQuestions {
             return 0;
         }
         return min;
-    }   
+    }
 
     // P424
-        
+
     public static int maxelement(int[] k) {
         int max = 0;
         for (int i = 0; i < k.length; i++) {
@@ -176,17 +176,18 @@ public class aMediumQuestions {
 
         return max;
     }
+
     public static int characterReplacement(String s, int k) {
         int[] occurs = new int[26];
         int start = 0;
         int max = 0;
         for (int i = 0; i < s.length(); i++) {
-            while (i-start > maxelement(occurs)+k) {
-                occurs[s.charAt(start)-'A']--;
+            while (i - start > maxelement(occurs) + k) {
+                occurs[s.charAt(start) - 'A']--;
                 start++;
             }
-            occurs[s.charAt(i)-'A']++;
-            max = Math.max(max, Math.min(maxelement(occurs)+k, s.length()));
+            occurs[s.charAt(i) - 'A']++;
+            max = Math.max(max, Math.min(maxelement(occurs) + k, s.length()));
         }
 
         return max;
@@ -200,17 +201,17 @@ public class aMediumQuestions {
         for (int i = 0; i < s.length(); i++) { // abcabcbb
             char cur = s.charAt(i);
             if (occurance.containsKey(cur)) {
-                start = Math.max(start, occurance.get(cur)+1);
+                start = Math.max(start, occurance.get(cur) + 1);
             }
             occurance.put(cur, i);
-            max = Math.max(max, i-start+1);
+            max = Math.max(max, i - start + 1);
 
         }
 
         return max;
     }
 
-    //2461
+    // 2461
     public static long maximumSubarraySum(int[] nums, int k) {
         int[] occurs = new int[100001];
         long sum = 0;
@@ -227,11 +228,11 @@ public class aMediumQuestions {
         if (valid) {
             maxsum = Math.max(maxsum, sum);
         }
-        ABC : for (int i = 1; i+k-1 < nums.length; i++) {
-            sum -= nums[i-1];
-            occurs[nums[i-1]]--;
-            sum += nums[i+k-1];
-            occurs[nums[i+k-1]]++;
+        ABC: for (int i = 1; i + k - 1 < nums.length; i++) {
+            sum -= nums[i - 1];
+            occurs[nums[i - 1]]--;
+            sum += nums[i + k - 1];
+            occurs[nums[i + k - 1]]++;
             for (int j = 0; j < occurs.length; j++) {
                 if (occurs[j] > 1) {
                     continue ABC;
@@ -251,10 +252,10 @@ public class aMediumQuestions {
         int[] target = new int[26];
         int[] current = new int[26];
         for (int i = 0; i < s1.length(); i++) {
-            target[s1.charAt(i)-'a']++;
+            target[s1.charAt(i) - 'a']++;
         }
         for (int i = 0; i < s1.length(); i++) {
-            current[s2.charAt(i)-'a']++;
+            current[s2.charAt(i) - 'a']++;
         }
         boolean match = true;
         for (int i = 0; i < 26; i++) {
@@ -266,9 +267,9 @@ public class aMediumQuestions {
         if (match) {
             return true;
         }
-        for (int i = 1; i + s1.length()-1 < s2.length(); i++) {
-            current[s2.charAt(i - 1)-'a']--;
-            current[s2.charAt(i + s1.length()-1)-'a']++;
+        for (int i = 1; i + s1.length() - 1 < s2.length(); i++) {
+            current[s2.charAt(i - 1) - 'a']--;
+            current[s2.charAt(i + s1.length() - 1) - 'a']++;
             boolean match1 = true;
             for (int j = 0; j < 26; j++) {
                 if (target[j] != current[j]) {
@@ -281,7 +282,6 @@ public class aMediumQuestions {
             }
         }
 
-
         return false;
     }
 
@@ -293,11 +293,10 @@ public class aMediumQuestions {
         }
         Map<Character, Integer> target = new HashMap<>();
         Map<Character, Integer> current = new HashMap<>();
-        for (int i = 'a'; i < 'z'+1; i++) {
+        for (int i = 'a'; i < 'z' + 1; i++) {
             target.put((char) i, 0);
             current.put((char) i, 0);
         }
-
 
         for (int i = 0; i < p.length(); i++) {
             target.put(p.charAt(i), target.getOrDefault(p.charAt(i), 0) + 1);
@@ -317,9 +316,9 @@ public class aMediumQuestions {
             indices.add(0);
         }
 
-        for (int i = 1; i + p.length()-1 < s.length(); i++) {
+        for (int i = 1; i + p.length() - 1 < s.length(); i++) {
             current.put(s.charAt(i - 1), current.getOrDefault(s.charAt(i - 1), 0) - 1);
-            current.put(s.charAt(i + p.length()-1), current.getOrDefault(s.charAt(i + p.length()-1), 0) + 1);
+            current.put(s.charAt(i + p.length() - 1), current.getOrDefault(s.charAt(i + p.length() - 1), 0) + 1);
             boolean match1 = true;
             for (int j = 'a'; j <= 'z'; j++) {
                 if (!target.get((char) j).equals(current.get((char) j))) {
@@ -331,23 +330,21 @@ public class aMediumQuestions {
                 indices.add(i);
             }
         }
- 
-
 
         return indices;
     }
 
     // P525
     public static int findMaxLength(int[] nums) {
-        int[] sums = new int[nums.length+1];
+        int[] sums = new int[nums.length + 1];
         for (int i = 1; i < sums.length; i++) {
             int change;
-            if (nums[i-1] == 0) {
+            if (nums[i - 1] == 0) {
                 change = -1;
             } else {
                 change = 1;
             }
-            sums[i] = sums[i-1] + change;
+            sums[i] = sums[i - 1] + change;
         }
         int[] seen = new int[200001];
         Arrays.fill(seen, -1);
@@ -368,10 +365,10 @@ public class aMediumQuestions {
 
     public static int maxArea(int[] height) {
         int i = 0;
-        int j = height.length-1;
+        int j = height.length - 1;
         int max = 0;
         while (i < j) {
-            max = Math.max(max, (j-i)*Math.min(height[i],height[j]));
+            max = Math.max(max, (j - i) * Math.min(height[i], height[j]));
             if (height[i] >= height[j]) {
                 j--;
             } else {
@@ -382,13 +379,13 @@ public class aMediumQuestions {
     }
 
     // P15 NO TLE
-    
+
     public static List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> sols = new ArrayList<>();
         Arrays.sort(nums);
         int f = 0;
-        int l = nums.length-1;
-        for (int i = 1; i <= nums.length-2; i++) {
+        int l = nums.length - 1;
+        for (int i = 1; i <= nums.length - 2; i++) {
             while (f < i && i < l) {
                 if (nums[f] + nums[i] + nums[l] > 0) {
                     l--;
@@ -401,7 +398,7 @@ public class aMediumQuestions {
                 }
             }
             f = 0;
-            l = nums.length-1;
+            l = nums.length - 1;
         }
         List<List<Integer>> uniqsols = new ArrayList<>();
         for (int i = 0; i < sols.size(); i++) {
@@ -453,14 +450,14 @@ public class aMediumQuestions {
     // P167 OK
     public static int[] twoSum(int[] numbers, int target) {
         int l = 0;
-        int h = numbers.length-1;
+        int h = numbers.length - 1;
         while (l < h) {
             if (numbers[l] + numbers[h] > target) {
                 h--;
             } else if (numbers[l] + numbers[h] < target) {
                 l++;
             } else {
-                return new int[] {l+1, h+1};
+                return new int[] { l + 1, h + 1 };
             }
         }
         return null;
@@ -472,12 +469,12 @@ public class aMediumQuestions {
             return false;
         }
         if (nums.length == 2) {
-            return ((nums[0]+nums[1])%k == 0);
+            return ((nums[0] + nums[1]) % k == 0);
         }
         int[] sums = new int[nums.length];
-        sums[0] = nums[0]%k;
+        sums[0] = nums[0] % k;
         for (int i = 1; i < sums.length; i++) {
-            sums[i] = (sums[i-1] + nums[i])%k;
+            sums[i] = (sums[i - 1] + nums[i]) % k;
         }
         boolean[] seen = new boolean[k];
         int queue = sums[0];
@@ -492,18 +489,16 @@ public class aMediumQuestions {
         return false;
     }
 
-    
-
     // P560 OK
     public static int subarraySum(int[] nums, int k) {
-        int[] presum = new int[nums.length+1];
+        int[] presum = new int[nums.length + 1];
         presum[1] = nums[0];
         for (int i = 2; i < presum.length; i++) {
-            presum[i] = presum[i-1] + nums[i-1];
+            presum[i] = presum[i - 1] + nums[i - 1];
         }
         int sbrry = 0;
-        for (int i = 0; i < presum.length-1; i++) {
-            for (int j = i+1; j < presum.length; j++) {
+        for (int i = 0; i < presum.length - 1; i++) {
+            for (int j = i + 1; j < presum.length; j++) {
                 if (presum[j] - presum[i] == k) {
                     sbrry++;
                 }
@@ -517,77 +512,75 @@ public class aMediumQuestions {
 
         return false;
         /*
-        if (nums.length < 3) {
-            return false;
-        }git
-        for (int i = 0; i < nums.length; i++) {
-            nums[i] += 1000;
-        }
-        int[] freq = new int[2001]; // 0,... 2000
-        for (int i : nums) {
-            freq[i]++;
-        }
-        ABC : while (true) {
-            int start = 0;
-            int count = 0;
-            for (int i = 0; i < freq.length; i++) {
-                if (start == 0) {
-                    if (freq[i] > 0) {
-                        start = freq[i];
-                        count++;
-                        freq[i]--;
-                    }
-                } else {
-                    if (freq[i] >= start) {
-                        count++;
-                        freq[i]--;
-                    } else {
-                        if (count < 3) {
-                            return false;
-                        } else {
-                            continue ABC;
-                        }
-                    }
-                }
-                
-            }
-            for (int i = 0; i < freq.length; i++) {
-                if (freq[i] > 0) {
-                    continue ABC;
-                }
-            }
-            return true;
-        } */
+         * if (nums.length < 3) {
+         * return false;
+         * }git
+         * for (int i = 0; i < nums.length; i++) {
+         * nums[i] += 1000;
+         * }
+         * int[] freq = new int[2001]; // 0,... 2000
+         * for (int i : nums) {
+         * freq[i]++;
+         * }
+         * ABC : while (true) {
+         * int start = 0;
+         * int count = 0;
+         * for (int i = 0; i < freq.length; i++) {
+         * if (start == 0) {
+         * if (freq[i] > 0) {
+         * start = freq[i];
+         * count++;
+         * freq[i]--;
+         * }
+         * } else {
+         * if (freq[i] >= start) {
+         * count++;
+         * freq[i]--;
+         * } else {
+         * if (count < 3) {
+         * return false;
+         * } else {
+         * continue ABC;
+         * }
+         * }
+         * }
+         * 
+         * }
+         * for (int i = 0; i < freq.length; i++) {
+         * if (freq[i] > 0) {
+         * continue ABC;
+         * }
+         * }
+         * return true;
+         * }
+         */
 
-    /*
-     * Map<Integer, Integer> mp = new HashMap<>(); //make map a list that can do
-     * contains AND find the i th
-     * for (int i : nums) {
-     * if (mp.containsKey(i)) {
-     * mp.put(i, mp.get(i) + 1);
-     * } else {
-     * mp.put(i, 1);
-     * }
-     * }
-     * 
-     * while (!mp.isEmpty()) {
-     * int length = 0;
-     * int current = -10;
-     * LinkedList<Integer> remove = new LinkedList<>();
-     * for (int i = 0; i < mp.size(); i++) {
-     * if (length == 0) { //need to find a way to get the i th item in the list
-     * current = mp.values().iterator().next();
-     * }
-     * }
-     * }
-     * 
-     * return true;
-     */
-    
+        /*
+         * Map<Integer, Integer> mp = new HashMap<>(); //make map a list that can do
+         * contains AND find the i th
+         * for (int i : nums) {
+         * if (mp.containsKey(i)) {
+         * mp.put(i, mp.get(i) + 1);
+         * } else {
+         * mp.put(i, 1);
+         * }
+         * }
+         * 
+         * while (!mp.isEmpty()) {
+         * int length = 0;
+         * int current = -10;
+         * LinkedList<Integer> remove = new LinkedList<>();
+         * for (int i = 0; i < mp.size(); i++) {
+         * if (length == 0) { //need to find a way to get the i th item in the list
+         * current = mp.values().iterator().next();
+         * }
+         * }
+         * }
+         * 
+         * return true;
+         */
+
     }
-
-    
-
 
     // P792 OK
     public static int numMatchingSubseq(String s, String[] words) {
@@ -615,14 +608,14 @@ public class aMediumQuestions {
     // P974 OK
 
     public static int subarraysDivByK(int[] nums, int k) {
-        int[] sums = new int[nums.length+1];
-        sums[1] = (nums[0]+k*10000)%k;
-        for (int i = 2; i < nums.length+1; i++) {
-            sums[i] = (sums[i-1] + nums[i-1] +k*10000)%k;
+        int[] sums = new int[nums.length + 1];
+        sums[1] = (nums[0] + k * 10000) % k;
+        for (int i = 2; i < nums.length + 1; i++) {
+            sums[i] = (sums[i - 1] + nums[i - 1] + k * 10000) % k;
         }
         int count = 0;
-        for (int i = 0; i < sums.length-1; i++) {
-            for (int j = i+1; j < sums.length; j++) {
+        for (int i = 0; i < sums.length - 1; i++) {
+            for (int j = i + 1; j < sums.length; j++) {
                 if ((sums[j] - sums[i]) == 0) {
                     count++;
                 }
@@ -631,7 +624,6 @@ public class aMediumQuestions {
         return count;
     }
 
-
     // P1525 OK
     public static int numSplits(String s) {
         if (s.length() == 1) {
@@ -639,12 +631,13 @@ public class aMediumQuestions {
         }
         HashMap<Character, Integer> firstapp = new HashMap<>();
         HashMap<Character, Integer> lastapp = new HashMap<>();
-        for (int i = 0; i < s.length(); i++) { 
+        for (int i = 0; i < s.length(); i++) {
             if (!firstapp.containsKey(s.charAt(i))) {
-                firstapp.put(s.charAt(i), i); //makes a map of where each letter occurs first
+                firstapp.put(s.charAt(i), i); // makes a map of where each letter occurs first
             }
-            if (!lastapp.containsKey(s.charAt(s.length()-1-i))) {
-                lastapp.put(s.charAt(s.length()-1-i), s.length()-1-i); //makes a map of where each letter occurs last
+            if (!lastapp.containsKey(s.charAt(s.length() - 1 - i))) {
+                lastapp.put(s.charAt(s.length() - 1 - i), s.length() - 1 - i); // makes a map of where each letter
+                                                                               // occurs last
             }
         }
 
@@ -663,53 +656,54 @@ public class aMediumQuestions {
             }
         }
 
-        Collections.sort(firsts); //sorted list of all the places where a letter appears for the first time
-        Collections.sort(lasts); //sorted list of all the places where a letter appears for the last time
-        Collections.sort(sigs); //sorted list of all the significant spots where the "good" can start and end
+        Collections.sort(firsts); // sorted list of all the places where a letter appears for the first time
+        Collections.sort(lasts); // sorted list of all the places where a letter appears for the last time
+        Collections.sort(sigs); // sorted list of all the significant spots where the "good" can start and end
 
-        for (int i = 0; i < sigs.size(); i++) { //going through all sig spots
+        for (int i = 0; i < sigs.size(); i++) { // going through all sig spots
             int beforeandthere = 0;
-            for (int j = 0; j < firsts.size(); j++) { //how many first appearance letters are before and including current sig spot
+            for (int j = 0; j < firsts.size(); j++) { // how many first appearance letters are before and including
+                                                      // current sig spot
                 if (firsts.get(j) > sigs.get(i)) {
                     break;
                 }
-                beforeandthere++; 
+                beforeandthere++;
             }
             int after = 0;
-            for (int j = lasts.size()-1; j >= 0; j--) { //how many last appearnace letters are after current sig spot
+            for (int j = lasts.size() - 1; j >= 0; j--) { // how many last appearnace letters are after current sig spot
                 if (lasts.get(j) <= sigs.get(i)) {
                     break;
                 }
-                after++; 
+                after++;
             }
             if (beforeandthere == after) {
-                return sigs.get(i+1) - sigs.get(i);
+                return sigs.get(i + 1) - sigs.get(i);
             }
         }
-        
+
         /*
-        int start = 0;
-        int end = s.length()-1;
-
-        int pos1 = 0;
-        int pos2 = s.length()-1;
-
-        int diff1 = 0;
-        int diff2 = 0;
-        while (true) {
-            if (diff1 <= diff2) {
-
-            } else {
-
-            }
-            if (firstapp.containsValue(i)) {
-                st = i;
-            }
-            if (lastapp.containsValue(s.length()-1-i)) {
-                en = s.length()-1-i;
-            }
-        }*/
-
+         * int start = 0;
+         * int end = s.length()-1;
+         * 
+         * int pos1 = 0;
+         * int pos2 = s.length()-1;
+         * 
+         * int diff1 = 0;
+         * int diff2 = 0;
+         * while (true) {
+         * if (diff1 <= diff2) {
+         * 
+         * } else {
+         * 
+         * }
+         * if (firstapp.containsValue(i)) {
+         * st = i;
+         * }
+         * if (lastapp.containsValue(s.length()-1-i)) {
+         * en = s.length()-1-i;
+         * }
+         * }
+         */
 
         return 0;
     }
