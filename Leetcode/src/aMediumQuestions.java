@@ -33,9 +33,9 @@ public class aMediumQuestions {
                 }
             }
         }
-        for (int j = 0; j < m; j++) {
+        for (int j = 0; j < n; j++) {
             if (nzero[j]) {
-                for (int i = 0; i < n; i++) {
+                for (int i = 0; i < m; i++) {
                     matrix[i][j] = 0;
                 }
             }
