@@ -12,6 +12,22 @@ public class aMediumQuestions {
         System.out.println(spiralOrder(new int[][] {{1,2},{3,4}}));
     }
 
+    // P48
+    public void rotate(int[][] matrix) {
+        int start = 0;
+        int x = matrix.length-1;
+        int length = matrix.length;
+        for (int i = start; i < x; i++) {
+            int temp = matrix[start][i];
+            matrix[start][i] = matrix[length-i][start];
+            matrix[length-i][start] = matrix[length-start][length-i];
+            matrix[length-start][length-i] = matrix[i][length-start];
+            matrix[i][length-start] = temp;
+        }
+        start++;
+        x--;
+    }
+
     // P54
     public static List<Integer> spiralOrder(int[][] matrix) {
         ArrayList<Integer> spiral = new ArrayList<>();
