@@ -12,6 +12,36 @@ public class aMediumQuestions {
         System.out.println(spiralOrder(new int[][] { { 1, 2 }, { 3, 4 } }));
     }
 
+    // P73
+    public void setZeroes(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        boolean[] mzero = new boolean[m];
+        boolean[] nzero = new boolean[n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (matrix[i][j] == 0) {
+                    mzero[i] = true;
+                    mzero[j] = true;
+                }
+            }
+        }
+        for (int i = 0; i < m; i++) {
+            if (mzero[i]) {
+                for (int j = 0; j < n; j++) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        for (int j = 0; j < m; j++) {
+            if (nzero[j]) {
+                for (int i = 0; i < n; i++) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+    }
+
     // P48
     public void rotate(int[][] matrix) {
         int start = 0;
