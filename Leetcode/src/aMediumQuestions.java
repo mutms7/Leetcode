@@ -12,6 +12,52 @@ public class aMediumQuestions {
         System.out.println(spiralOrder(new int[][] { { 1, 2 }, { 3, 4 } }));
     }
 
+    // P36
+    public static boolean isValidSudoku(char[][] board) {
+        for (int i = 0; i < 9; i++) {
+            boolean[] seen = new boolean[9];
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] == '.') {
+                    continue;
+                }
+                if (seen[board[i][j] - '1']) {
+                    return false;
+                }
+                seen[board[i][j] - '1'] = true;
+            }
+        }
+        for (int i = 0; i < 9; i++) {
+            boolean[] seen = new boolean[9];
+            for (int j = 0; j < 9; j++) {
+                if (board[j][i] == '.') {
+                    continue;
+                }
+                if (seen[board[j][i] - '1']) {
+                    return false;
+                }
+                seen[board[j][i] - '1'] = true;
+            }
+        }
+        for (int x = 0; x < 9; x += 3) {
+            for (int y = 0; y < 9; y += 3) {
+                boolean[] seen = new boolean[9];
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        if (board[i + x][j + y] == '.') {
+                            continue;
+                        }
+                        if (seen[board[i + x][j + y] - '1']) {
+                            return false;
+                        }
+                        seen[board[i + x][j + y] - '1'] = true;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
     // P73
     public void setZeroes(int[][] matrix) {
         int m = matrix.length;
