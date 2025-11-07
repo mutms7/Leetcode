@@ -14,7 +14,7 @@ public class aMediumQuestions {
 
     // P179
 
-    public String largestNumber(int[] nums) {
+    public static String largestNumber(int[] nums) {
         String[] array =  new String[nums.length];
         for(int i=0; i<nums.length; i++){
             array[i] = String.valueOf(nums[i]);
