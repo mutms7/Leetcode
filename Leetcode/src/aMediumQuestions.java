@@ -9,7 +9,7 @@ public class aMediumQuestions {
     }
 
     public static void main(String[] args) {
-        System.out.println(gameOfLife(new int[][] {{0,1,0},{0,0,1},{1,1,1},{0,0,0}}));
+        gameOfLife(new int[][] {{0,1,0},{0,0,1},{1,1,1},{0,0,0}});
     }
 
     // P289
@@ -31,12 +31,22 @@ public class aMediumQuestions {
                     }
                 }
 
-                if (count == 2 || count == 3) {
-                    if (board[i][j] == 0) {
-                        board[i][j] = 2;
-                    } else {
-                        board[i][j] = 3;
+                if (board[i][j] == 0) {
+                    if (count == 3) {
+                        board[i][j] = 2;   
                     }
+                }
+                else if (count == 2 || count == 3) {
+                        board[i][j] = 3;
+                }
+            }
+        }
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] < 2) {
+                    board[i][j] = 0;
+                } else {
+                    board[i][j] = 1;
                 }
             }
         }
