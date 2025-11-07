@@ -9,7 +9,7 @@ public class aMediumQuestions {
     }
 
     public static void main(String[] args) {
-        System.out.println(spiralOrder(new int[][] { { 1, 2 }, { 3, 4 } }));
+        System.out.println(largestNumber(new int[] {34323,3432}));
     }
 
     // P179
