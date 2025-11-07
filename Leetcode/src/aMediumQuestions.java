@@ -12,6 +12,32 @@ public class aMediumQuestions {
         System.out.println(spiralOrder(new int[][] { { 1, 2 }, { 3, 4 } }));
     }
 
+    // P179
+
+    public static String largestNumber(int[] nums) {
+        int maxlength = -1;
+        String[][] snums = new String[nums.length][2];
+        for (int i = 0; i < nums.length; i++) {
+            snums[i][0] = (String) Integer.toString(nums[i]);
+            snums[i][1] = (String) Integer.toString(snums[i][0].length());
+        }
+        for (int i = 0; i < nums.length; i++) {
+            maxlength = Math.max(snums[i][0].length(), maxlength);
+        }
+        for (int i = 0; i < snums.length; i++) {
+            while (snums[i][0].length() < maxlength) {
+                snums[i][0] = snums[i][0] + snums[i][0].charAt(snums[i][0].length()-1);
+            }
+        }
+        Arrays.sort(snums, (p1, p2) -> p1[0].compareTo(p2[0]));
+        String result = "";
+        for (int i = nums.length-1; i >= 0; i--) {
+            result = result + snums[i][0].substring(0, Integer.parseInt(snums[i][1]));
+        }
+
+        return result;
+    }
+
     // P36
     public static boolean isValidSudoku(char[][] board) {
         for (int i = 0; i < 9; i++) {
