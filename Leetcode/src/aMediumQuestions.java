@@ -12,7 +12,108 @@ public class aMediumQuestions {
         gameOfLife(new int[][] {{0,1,0},{0,0,1},{1,1,1},{0,0,0}});
     }
 
+
+
+    // P707
+    /*
+     * 
+     * 
+     * 
+    class MyLinkedList {
+
+    private static class Node{
+        int val;
+        Node next;
+        public Node(int val) {
+            this.val = val;
+        }
+    }
+
+    Node head = null;
+    Node tail = null;
+    int currentsize = 0;
+
+    public MyLinkedList() {
+    }
     
+    public int get(int index) {
+        if (index < 0 || index >= currentsize) {
+            return -1;
+        }
+        Node temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+        return temp.val;
+    }
+
+    private Node getNodeAtIndex(int index) {
+        if(index < 0 || index >= currentsize)
+            return null;
+
+        Node temp = head;
+        for(int i=0; i<index; i++){
+            temp = temp.next;
+        }
+        return temp;
+    }
+    
+    public void addAtHead(int val) {
+        Node newNode = new Node(val);
+        newNode.next = head;
+        head = newNode;
+        if (currentsize == 0)
+        tail = head;
+        currentsize++;
+    }
+    
+    public void addAtTail(int val) {
+        if (currentsize == 0)
+        addAtHead(val);
+        else {
+            tail.next = new Node(val);
+            tail = tail.next;
+            currentsize++;
+        }
+    }
+    
+    public void addAtIndex(int index, int val) {
+        if (index < 0 || index > currentsize)
+        return;
+        else if (index == 0)
+        addAtHead(val);
+        else if (index == currentsize)
+        addAtTail(val);
+        else {
+            Node newNode = new Node(val);
+            Node prevNode = getNodeAtIndex(index-1);
+            newNode.next = prevNode.next;
+            prevNode.next = newNode;
+            currentsize++;
+        }
+    }
+    
+    public void deleteAtIndex(int index) {
+        if (index < 0 || index >= currentsize)
+        return;
+        else if (currentsize == 1) {
+            head = null;
+            tail = null;
+        }
+        else if (index == 0) 
+            head = head.next;
+        else if (index == currentsize-1) {
+            Node previousNode = (getNodeAtIndex(index-1));
+            previousNode.next = null;
+            tail = previousNode;
+        } else {
+            Node previousNode = (getNodeAtIndex(index-1));
+            previousNode.next = previousNode.next.next; 
+        }
+        currentsize--;
+    }
+}
+     */
 
 
 
