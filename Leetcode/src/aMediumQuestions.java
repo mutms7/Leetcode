@@ -9,7 +9,7 @@ public class aMediumQuestions {
     }
 
     public static void main(String[] args) {
-        System.out.println(largestNumber(new int[] {34323,3432}));
+        System.out.println(gameOfLife(new int[][] {{0,1,0},{0,0,1},{1,1,1},{0,0,0}}));
     }
 
     // P289
