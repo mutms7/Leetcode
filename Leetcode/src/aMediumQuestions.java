@@ -14,28 +14,20 @@ public class aMediumQuestions {
 
     // P179
 
-    public static String largestNumber(int[] nums) {
-        int maxlength = -1;
-        String[][] snums = new String[nums.length][2];
-        for (int i = 0; i < nums.length; i++) {
-            snums[i][0] = (String) Integer.toString(nums[i]);
-            snums[i][1] = (String) Integer.toString(snums[i][0].length());
+    public String largestNumber(int[] nums) {
+        String[] array =  new String[nums.length];
+        for(int i=0; i<nums.length; i++){
+            array[i] = String.valueOf(nums[i]);
         }
-        for (int i = 0; i < nums.length; i++) {
-            maxlength = Math.max(snums[i][0].length(), maxlength);
+        Arrays.sort(array,(a,b)-> (b+a).compareTo(a+b));
+        if(array[0].equals("0")){
+            return "0";
         }
-        for (int i = 0; i < snums.length; i++) {
-            while (snums[i][0].length() < maxlength) {
-                snums[i][0] = snums[i][0] + snums[i][0].charAt(snums[i][0].length()-1);
-            }
+        StringBuilder largest = new StringBuilder();
+        for(int i=0; i<array.length; i++){
+            largest.append(array[i]);
         }
-        Arrays.sort(snums, (p1, p2) -> p1[0].compareTo(p2[0]));
-        String result = "";
-        for (int i = nums.length-1; i >= 0; i--) {
-            result = result + snums[i][0].substring(0, Integer.parseInt(snums[i][1]));
-        }
-
-        return result;
+        return largest.toString();
     }
 
     // P36
