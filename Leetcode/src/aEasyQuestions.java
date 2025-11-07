@@ -12,6 +12,17 @@ public class aEasyQuestions {
         return "y";
     }
 
+    // P160
+    /*
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    ListNode A = headA, B = headB;
+        while (A != B) {
+            A = A == null ? headB : A.next;
+            B = B == null ? headA : B.next;
+        }
+        return A;
+    }*/
+
     // P88 
     
     public static void merge(int[] nums1, int m, int[] nums2, int n) {

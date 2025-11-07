@@ -12,6 +12,10 @@ public class aMediumQuestions {
         gameOfLife(new int[][] {{0,1,0},{0,0,1},{1,1,1},{0,0,0}});
     }
 
+    
+
+
+
     // P289
 
     public static void gameOfLife(int[][] board) {
