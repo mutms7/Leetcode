@@ -12,6 +12,36 @@ public class aMediumQuestions {
         System.out.println(largestNumber(new int[] {34323,3432}));
     }
 
+    // P289
+
+    public static void gameOfLife(int[][] board) {
+        int m = board.length;
+        int n = board[0].length;
+        
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int count = 0;
+                for (int a = -1; a <= 1; a++) {
+                    for (int b = -1; b <= 1; b++) {
+                        if (0 <= i+a && i+a < m && 0 <= j+b && j+b < n && !(a == 0 && b == 0)) {
+                            if (board[i+a][j+b] % 2 == 1) {
+                                count++;
+                            }
+                        }
+                    }
+                }
+
+                if (count == 2 || count == 3) {
+                    if (board[i][j] == 0) {
+                        board[i][j] = 2;
+                    } else {
+                        board[i][j] = 3;
+                    }
+                }
+            }
+        }
+    }
+
     // P179
 
     public static String largestNumber(int[] nums) {
