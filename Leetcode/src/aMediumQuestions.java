@@ -12,7 +12,31 @@ public class aMediumQuestions {
         gameOfLife(new int[][] {{0,1,0},{0,0,1},{1,1,1},{0,0,0}});
     }
 
+    // P19
 
+    /*
+public ListNode removeNthFromEnd(ListNode head, int n) {
+        if (head == null) {
+            return null;
+        }
+        return removeNthFromEndh(head, linlislen(head) - n);
+    }
+
+    public ListNode removeNthFromEndh(ListNode head, int n) {
+        if (n == 0) {
+            return head.next;
+        }
+        return new ListNode(head.val, removeNthFromEndh(head.next, n-1));
+    }
+
+    public int linlislen(ListNode head) {
+        if (head == null) {
+            return 0;
+        }
+        return 1 + linlislen(head.next);
+    }
+
+    */
 
     // P707
     /*
