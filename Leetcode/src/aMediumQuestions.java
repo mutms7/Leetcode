@@ -12,6 +12,18 @@ public class aMediumQuestions {
         gameOfLife(new int[][] {{0,1,0},{0,0,1},{1,1,1},{0,0,0}});
     }
 
+    // P24
+    /*
+    public ListNode swapPairs(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        if (head.next == null) {
+            return head;
+        }
+        return new ListNode(head.next.val, new ListNode(head.val, swapPairs(head.next.next)));
+    }*/
+
     // P19
 
     /*
