@@ -12,6 +12,32 @@ public class aMediumQuestions {
         gameOfLife(new int[][] {{0,1,0},{0,0,1},{1,1,1},{0,0,0}});
     }
 
+    // P394
+
+    public static String decodeString(String s) {
+        String item = "";
+        if (s.length() == 0) {
+            return "";
+        }
+        String snum = "";
+        for (int i = 0; i < s.length(); i++) {
+            int curr = s.charAt(i);
+            if ('a' <= curr && curr <= 'z') {
+                item =
+            }
+            else if ('0' <= curr && curr <= '9') {
+                snum = snum + curr;
+            }
+            else if (curr == '[') {
+
+            }
+        }
+
+
+        return item;
+
+    }
+
     // P24
     /*
     public ListNode swapPairs(ListNode head) {
