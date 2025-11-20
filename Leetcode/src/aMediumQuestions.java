@@ -9,10 +9,37 @@ public class aMediumQuestions {
     }
 
     public static void main(String[] args) {
-        gameOfLife(new int[][] {{0,1,0},{0,0,1},{1,1,1},{0,0,0}});
+        System.out.println(decodeString("3[a]2[bc]"));
     }
 
+
+
     // P394
+
+    /*
+    Javascript
+    function decodeString(s: string): string {
+    const tokens = s.split("");
+    let stack: [number, string][] = [];
+    let num = 0;
+    let str = "";
+    for (let token of tokens) {
+        if (token === "[") {
+            stack.push([num, str]);
+            num = 0;
+            str = "";
+        } else if (token === "]") {
+            let [count, prevStr] = stack.pop()!;
+            str = prevStr + str.repeat(count);
+        } else if (!isNaN(parseInt(token))) {
+            num = num * 10 + parseInt(token);
+        } else {
+            str += token;
+        }
+    }
+    return str;
+};
+    */
 
     public static String decodeString(String s) {
         String item = "";
@@ -21,15 +48,36 @@ public class aMediumQuestions {
         }
         String snum = "";
         for (int i = 0; i < s.length(); i++) {
-            int curr = s.charAt(i);
+            char curr = s.charAt(i);
             if ('a' <= curr && curr <= 'z') {
-                item =
+                item += curr;
             }
             else if ('0' <= curr && curr <= '9') {
-                snum = snum + curr;
+                snum += curr;
             }
             else if (curr == '[') {
-
+                int countopen = 1;
+                String recur = "";
+                while (true) {
+                    i++;
+                    curr = s.charAt(i);
+                    if (curr == '[') {
+                        countopen++;
+                    }
+                    if (curr == ']') {
+                        countopen--;
+                        if (countopen == 0) {
+                            
+                            String addstr = decodeString(recur);
+                            for (int j = 0; j < Integer.parseInt(snum); j++) {
+                                item += addstr;
+                            }
+                            snum = "";
+                            break;
+                        }
+                    }
+                    recur += curr;
+                }
             }
         }
 
