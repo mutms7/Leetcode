@@ -39,6 +39,30 @@ public class aMediumQuestions {
     }
     return str;
 };
+
+public String decodeString(String s) {
+    char[] tokens = s.toCharArray();
+    Stack<Pair<Integer, String>> stack = new Stack<>();
+    int num = 0;
+    String str = "";
+    for (char token : tokens) {
+        if (token == '[') {
+            stack.push(new Pair<>(num, str));
+            num = 0;
+            str = "";
+        } else if (token == ']') {
+            Pair<Integer, String> pair = stack.pop();
+            int count = pair.getKey();
+            String prevStr = pair.getValue();
+            str = prevStr + str.repeat(count);
+        } else if (Character.isDigit(token)) {
+            num = num * 10 + Character.getNumericValue(token);
+        } else {
+            str += token;
+        }
+    }
+    return str;
+}
     */
 
     public static String decodeString(String s) {
