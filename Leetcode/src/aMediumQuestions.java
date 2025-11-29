@@ -14,6 +14,65 @@ public class aMediumQuestions {
 
 
 
+
+    // P2
+
+    /* 
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        int sum = l1.val + l2.val;
+        if (sum >= 10) {
+            return new ListNode(sum-10, addTwoNumHelp(l1.next, l2.next, true));
+        } else {
+            return new ListNode(sum, addTwoNumHelp(l1.next, l2.next, false));
+        }
+    }
+
+    public ListNode addTwoNumHelp(ListNode l1, ListNode l2, boolean carry) {
+        int sum = 0;
+        if (l1 == null && l2 == null) {
+            sum = 0;
+        } else if (l1 == null) {
+            sum = l2.val;
+        } else if (l2 == null) {
+            sum = l1.val;
+        } else {
+            sum = l1.val+l2.val;
+        }
+        if (carry) {
+            sum++;
+        }
+
+        if (l1 == null && l2 == null) {
+            if (sum == 1) {
+            return new ListNode(1, null);
+        } else {
+            return null;
+        }
+          
+        } else if (l1 == null) {
+          if (sum >= 10) {
+            return new ListNode(sum-10, addTwoNumHelp(null, l2.next, true));
+        } else {
+            return new ListNode(sum, addTwoNumHelp(null, l2.next, false));
+        }
+        } else if (l2 == null) {
+          if (sum >= 10) {
+            return new ListNode(sum-10, addTwoNumHelp( l1.next,  null, true));
+        } else {
+            return new ListNode(sum, addTwoNumHelp( l1.next,  null, false));
+        }
+        } else {
+            if (sum >= 10) {
+            return new ListNode(sum-10, addTwoNumHelp( l1.next,  l2.next, true));
+        } else {
+            return new ListNode(sum, addTwoNumHelp( l1.next,  l2.next, false));
+        }
+        }
+    }
+    */
+
+
+
     // P394
 
     /*
