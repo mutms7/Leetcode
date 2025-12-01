@@ -13,6 +13,32 @@ public class HardQuestions {
         return "";
     }
 
+    //P25
+    /*
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode others = kthList(head, k);
+        if (others != null && others.val == -1) {
+            return head;
+        }
+        others = reverseKGroup(others, k);
+        for (int i = 0; i < k; i++) {
+            others = new ListNode(head.val, others);
+            head = head.next;
+        }
+        return others;
+    }
+
+    public ListNode kthList(ListNode head, int k) {
+        if (k == 0) {
+            return head;
+        } else if (head == null) {
+            return new ListNode(-1);
+        } else {
+            return kthList(head.next, k-1);
+        }
+    }
+    */
+
     //P76
     public static String minWindow(String s, String t) {
         int[] tcount = new int[58];
