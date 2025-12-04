@@ -12,117 +12,126 @@ public class aMediumQuestions {
         System.out.println(decodeString("3[a]2[bc]"));
     }
 
+    // P406
 
-
+    public static int[][] reconstructQueue(int[][] people) {
+        Arrays.sort(people, (a, b) -> {
+            if (a[0] != b[0]) return b[0] - a[0];
+            return a[1] - b[1];
+        });
+        ArrayList<int[]> answer = new ArrayList<>();
+        for (int[] person : people) {
+            answer.add(person[1], person);
+        }
+        return answer.toArray(new int[people.length][2]);
+    }
 
     // P2
 
-    /* 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        int sum = l1.val + l2.val;
-        if (sum >= 10) {
-            return new ListNode(sum-10, addTwoNumHelp(l1.next, l2.next, true));
-        } else {
-            return new ListNode(sum, addTwoNumHelp(l1.next, l2.next, false));
-        }
-    }
-
-    public ListNode addTwoNumHelp(ListNode l1, ListNode l2, boolean carry) {
-        int sum = 0;
-        if (l1 == null && l2 == null) {
-            sum = 0;
-        } else if (l1 == null) {
-            sum = l2.val;
-        } else if (l2 == null) {
-            sum = l1.val;
-        } else {
-            sum = l1.val+l2.val;
-        }
-        if (carry) {
-            sum++;
-        }
-
-        if (l1 == null && l2 == null) {
-            if (sum == 1) {
-            return new ListNode(1, null);
-        } else {
-            return null;
-        }
-          
-        } else if (l1 == null) {
-          if (sum >= 10) {
-            return new ListNode(sum-10, addTwoNumHelp(null, l2.next, true));
-        } else {
-            return new ListNode(sum, addTwoNumHelp(null, l2.next, false));
-        }
-        } else if (l2 == null) {
-          if (sum >= 10) {
-            return new ListNode(sum-10, addTwoNumHelp( l1.next,  null, true));
-        } else {
-            return new ListNode(sum, addTwoNumHelp( l1.next,  null, false));
-        }
-        } else {
-            if (sum >= 10) {
-            return new ListNode(sum-10, addTwoNumHelp( l1.next,  l2.next, true));
-        } else {
-            return new ListNode(sum, addTwoNumHelp( l1.next,  l2.next, false));
-        }
-        }
-    }
-    */
-
-
+    /*
+     * public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+     * int sum = l1.val + l2.val;
+     * if (sum >= 10) {
+     * return new ListNode(sum-10, addTwoNumHelp(l1.next, l2.next, true));
+     * } else {
+     * return new ListNode(sum, addTwoNumHelp(l1.next, l2.next, false));
+     * }
+     * }
+     * 
+     * public ListNode addTwoNumHelp(ListNode l1, ListNode l2, boolean carry) {
+     * int sum = 0;
+     * if (l1 == null && l2 == null) {
+     * sum = 0;
+     * } else if (l1 == null) {
+     * sum = l2.val;
+     * } else if (l2 == null) {
+     * sum = l1.val;
+     * } else {
+     * sum = l1.val+l2.val;
+     * }
+     * if (carry) {
+     * sum++;
+     * }
+     * 
+     * if (l1 == null && l2 == null) {
+     * if (sum == 1) {
+     * return new ListNode(1, null);
+     * } else {
+     * return null;
+     * }
+     * 
+     * } else if (l1 == null) {
+     * if (sum >= 10) {
+     * return new ListNode(sum-10, addTwoNumHelp(null, l2.next, true));
+     * } else {
+     * return new ListNode(sum, addTwoNumHelp(null, l2.next, false));
+     * }
+     * } else if (l2 == null) {
+     * if (sum >= 10) {
+     * return new ListNode(sum-10, addTwoNumHelp( l1.next, null, true));
+     * } else {
+     * return new ListNode(sum, addTwoNumHelp( l1.next, null, false));
+     * }
+     * } else {
+     * if (sum >= 10) {
+     * return new ListNode(sum-10, addTwoNumHelp( l1.next, l2.next, true));
+     * } else {
+     * return new ListNode(sum, addTwoNumHelp( l1.next, l2.next, false));
+     * }
+     * }
+     * }
+     */
 
     // P394
 
     /*
-    Javascript
-    function decodeString(s: string): string {
-    const tokens = s.split("");
-    let stack: [number, string][] = [];
-    let num = 0;
-    let str = "";
-    for (let token of tokens) {
-        if (token === "[") {
-            stack.push([num, str]);
-            num = 0;
-            str = "";
-        } else if (token === "]") {
-            let [count, prevStr] = stack.pop()!;
-            str = prevStr + str.repeat(count);
-        } else if (!isNaN(parseInt(token))) {
-            num = num * 10 + parseInt(token);
-        } else {
-            str += token;
-        }
-    }
-    return str;
-};
-
-public String decodeString(String s) {
-    char[] tokens = s.toCharArray();
-    Stack<Pair<Integer, String>> stack = new Stack<>();
-    int num = 0;
-    String str = "";
-    for (char token : tokens) {
-        if (token == '[') {
-            stack.push(new Pair<>(num, str));
-            num = 0;
-            str = "";
-        } else if (token == ']') {
-            Pair<Integer, String> pair = stack.pop();
-            int count = pair.getKey();
-            String prevStr = pair.getValue();
-            str = prevStr + str.repeat(count);
-        } else if (Character.isDigit(token)) {
-            num = num * 10 + Character.getNumericValue(token);
-        } else {
-            str += token;
-        }
-    }
-    return str;
-}
-    */
+     * Javascript
+     * function decodeString(s: string): string {
+     * const tokens = s.split("");
+     * let stack: [number, string][] = [];
+     * let num = 0;
+     * let str = "";
+     * for (let token of tokens) {
+     * if (token === "[") {
+     * stack.push([num, str]);
+     * num = 0;
+     * str = "";
+     * } else if (token === "]") {
+     * let [count, prevStr] = stack.pop()!;
+     * str = prevStr + str.repeat(count);
+     * } else if (!isNaN(parseInt(token))) {
+     * num = num * 10 + parseInt(token);
+     * } else {
+     * str += token;
+     * }
+     * }
+     * return str;
+     * };
+     * 
+     * public String decodeString(String s) {
+     * char[] tokens = s.toCharArray();
+     * Stack<Pair<Integer, String>> stack = new Stack<>();
+     * int num = 0;
+     * String str = "";
+     * for (char token : tokens) {
+     * if (token == '[') {
+     * stack.push(new Pair<>(num, str));
+     * num = 0;
+     * str = "";
+     * } else if (token == ']') {
+     * Pair<Integer, String> pair = stack.pop();
+     * int count = pair.getKey();
+     * String prevStr = pair.getValue();
+     * str = prevStr + str.repeat(count);
+     * } else if (Character.isDigit(token)) {
+     * num = num * 10 + Character.getNumericValue(token);
+     * } else {
+     * str += token;
+     * }
+     * }
+     * return str;
+     * }
+     */
 
     public static String decodeString(String s) {
         String item = "";
@@ -134,11 +143,9 @@ public String decodeString(String s) {
             char curr = s.charAt(i);
             if ('a' <= curr && curr <= 'z') {
                 item += curr;
-            }
-            else if ('0' <= curr && curr <= '9') {
+            } else if ('0' <= curr && curr <= '9') {
                 snum += curr;
-            }
-            else if (curr == '[') {
+            } else if (curr == '[') {
                 int countopen = 1;
                 String recur = "";
                 while (true) {
@@ -150,7 +157,7 @@ public String decodeString(String s) {
                     if (curr == ']') {
                         countopen--;
                         if (countopen == 0) {
-                            
+
                             String addstr = decodeString(recur);
                             for (int j = 0; j < Integer.parseInt(snum); j++) {
                                 item += addstr;
@@ -164,165 +171,164 @@ public String decodeString(String s) {
             }
         }
 
-
         return item;
 
     }
 
     // P24
     /*
-    public ListNode swapPairs(ListNode head) {
-        if (head == null) {
-            return null;
-        }
-        if (head.next == null) {
-            return head;
-        }
-        return new ListNode(head.next.val, new ListNode(head.val, swapPairs(head.next.next)));
-    }*/
+     * public ListNode swapPairs(ListNode head) {
+     * if (head == null) {
+     * return null;
+     * }
+     * if (head.next == null) {
+     * return head;
+     * }
+     * return new ListNode(head.next.val, new ListNode(head.val,
+     * swapPairs(head.next.next)));
+     * }
+     */
 
     // P19
 
     /*
-public ListNode removeNthFromEnd(ListNode head, int n) {
-        if (head == null) {
-            return null;
-        }
-        return removeNthFromEndh(head, linlislen(head) - n);
-    }
-
-    public ListNode removeNthFromEndh(ListNode head, int n) {
-        if (n == 0) {
-            return head.next;
-        }
-        return new ListNode(head.val, removeNthFromEndh(head.next, n-1));
-    }
-
-    public int linlislen(ListNode head) {
-        if (head == null) {
-            return 0;
-        }
-        return 1 + linlislen(head.next);
-    }
-
-    */
+     * public ListNode removeNthFromEnd(ListNode head, int n) {
+     * if (head == null) {
+     * return null;
+     * }
+     * return removeNthFromEndh(head, linlislen(head) - n);
+     * }
+     * 
+     * public ListNode removeNthFromEndh(ListNode head, int n) {
+     * if (n == 0) {
+     * return head.next;
+     * }
+     * return new ListNode(head.val, removeNthFromEndh(head.next, n-1));
+     * }
+     * 
+     * public int linlislen(ListNode head) {
+     * if (head == null) {
+     * return 0;
+     * }
+     * return 1 + linlislen(head.next);
+     * }
+     * 
+     */
 
     // P707
     /*
      * 
      * 
      * 
-    class MyLinkedList {
-
-    private static class Node{
-        int val;
-        Node next;
-        public Node(int val) {
-            this.val = val;
-        }
-    }
-
-    Node head = null;
-    Node tail = null;
-    int currentsize = 0;
-
-    public MyLinkedList() {
-    }
-    
-    public int get(int index) {
-        if (index < 0 || index >= currentsize) {
-            return -1;
-        }
-        Node temp = head;
-        for (int i = 0; i < index; i++) {
-            temp = temp.next;
-        }
-        return temp.val;
-    }
-
-    private Node getNodeAtIndex(int index) {
-        if(index < 0 || index >= currentsize)
-            return null;
-
-        Node temp = head;
-        for(int i=0; i<index; i++){
-            temp = temp.next;
-        }
-        return temp;
-    }
-    
-    public void addAtHead(int val) {
-        Node newNode = new Node(val);
-        newNode.next = head;
-        head = newNode;
-        if (currentsize == 0)
-        tail = head;
-        currentsize++;
-    }
-    
-    public void addAtTail(int val) {
-        if (currentsize == 0)
-        addAtHead(val);
-        else {
-            tail.next = new Node(val);
-            tail = tail.next;
-            currentsize++;
-        }
-    }
-    
-    public void addAtIndex(int index, int val) {
-        if (index < 0 || index > currentsize)
-        return;
-        else if (index == 0)
-        addAtHead(val);
-        else if (index == currentsize)
-        addAtTail(val);
-        else {
-            Node newNode = new Node(val);
-            Node prevNode = getNodeAtIndex(index-1);
-            newNode.next = prevNode.next;
-            prevNode.next = newNode;
-            currentsize++;
-        }
-    }
-    
-    public void deleteAtIndex(int index) {
-        if (index < 0 || index >= currentsize)
-        return;
-        else if (currentsize == 1) {
-            head = null;
-            tail = null;
-        }
-        else if (index == 0) 
-            head = head.next;
-        else if (index == currentsize-1) {
-            Node previousNode = (getNodeAtIndex(index-1));
-            previousNode.next = null;
-            tail = previousNode;
-        } else {
-            Node previousNode = (getNodeAtIndex(index-1));
-            previousNode.next = previousNode.next.next; 
-        }
-        currentsize--;
-    }
-}
+     * class MyLinkedList {
+     * 
+     * private static class Node{
+     * int val;
+     * Node next;
+     * public Node(int val) {
+     * this.val = val;
+     * }
+     * }
+     * 
+     * Node head = null;
+     * Node tail = null;
+     * int currentsize = 0;
+     * 
+     * public MyLinkedList() {
+     * }
+     * 
+     * public int get(int index) {
+     * if (index < 0 || index >= currentsize) {
+     * return -1;
+     * }
+     * Node temp = head;
+     * for (int i = 0; i < index; i++) {
+     * temp = temp.next;
+     * }
+     * return temp.val;
+     * }
+     * 
+     * private Node getNodeAtIndex(int index) {
+     * if(index < 0 || index >= currentsize)
+     * return null;
+     * 
+     * Node temp = head;
+     * for(int i=0; i<index; i++){
+     * temp = temp.next;
+     * }
+     * return temp;
+     * }
+     * 
+     * public void addAtHead(int val) {
+     * Node newNode = new Node(val);
+     * newNode.next = head;
+     * head = newNode;
+     * if (currentsize == 0)
+     * tail = head;
+     * currentsize++;
+     * }
+     * 
+     * public void addAtTail(int val) {
+     * if (currentsize == 0)
+     * addAtHead(val);
+     * else {
+     * tail.next = new Node(val);
+     * tail = tail.next;
+     * currentsize++;
+     * }
+     * }
+     * 
+     * public void addAtIndex(int index, int val) {
+     * if (index < 0 || index > currentsize)
+     * return;
+     * else if (index == 0)
+     * addAtHead(val);
+     * else if (index == currentsize)
+     * addAtTail(val);
+     * else {
+     * Node newNode = new Node(val);
+     * Node prevNode = getNodeAtIndex(index-1);
+     * newNode.next = prevNode.next;
+     * prevNode.next = newNode;
+     * currentsize++;
+     * }
+     * }
+     * 
+     * public void deleteAtIndex(int index) {
+     * if (index < 0 || index >= currentsize)
+     * return;
+     * else if (currentsize == 1) {
+     * head = null;
+     * tail = null;
+     * }
+     * else if (index == 0)
+     * head = head.next;
+     * else if (index == currentsize-1) {
+     * Node previousNode = (getNodeAtIndex(index-1));
+     * previousNode.next = null;
+     * tail = previousNode;
+     * } else {
+     * Node previousNode = (getNodeAtIndex(index-1));
+     * previousNode.next = previousNode.next.next;
+     * }
+     * currentsize--;
+     * }
+     * }
      */
-
-
 
     // P289
 
     public static void gameOfLife(int[][] board) {
         int m = board.length;
         int n = board[0].length;
-        
+
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 int count = 0;
                 for (int a = -1; a <= 1; a++) {
                     for (int b = -1; b <= 1; b++) {
-                        if (0 <= i+a && i+a < m && 0 <= j+b && j+b < n && !(a == 0 && b == 0)) {
-                            if (board[i+a][j+b] % 2 == 1) {
+                        if (0 <= i + a && i + a < m && 0 <= j + b && j + b < n && !(a == 0 && b == 0)) {
+                            if (board[i + a][j + b] % 2 == 1) {
                                 count++;
                             }
                         }
@@ -331,11 +337,10 @@ public ListNode removeNthFromEnd(ListNode head, int n) {
 
                 if (board[i][j] == 0) {
                     if (count == 3) {
-                        board[i][j] = 2;   
+                        board[i][j] = 2;
                     }
-                }
-                else if (count == 2 || count == 3) {
-                        board[i][j] = 3;
+                } else if (count == 2 || count == 3) {
+                    board[i][j] = 3;
                 }
             }
         }
@@ -353,16 +358,16 @@ public ListNode removeNthFromEnd(ListNode head, int n) {
     // P179
 
     public static String largestNumber(int[] nums) {
-        String[] array =  new String[nums.length];
-        for(int i=0; i<nums.length; i++){
+        String[] array = new String[nums.length];
+        for (int i = 0; i < nums.length; i++) {
             array[i] = String.valueOf(nums[i]);
         }
-        Arrays.sort(array,(a,b)-> (b+a).compareTo(a+b));
-        if(array[0].equals("0")){
+        Arrays.sort(array, (a, b) -> (b + a).compareTo(a + b));
+        if (array[0].equals("0")) {
             return "0";
         }
         StringBuilder largest = new StringBuilder();
-        for(int i=0; i<array.length; i++){
+        for (int i = 0; i < array.length; i++) {
             largest.append(array[i]);
         }
         return largest.toString();
