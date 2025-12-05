@@ -12,6 +12,34 @@ public class aMediumQuestions {
         System.out.println(decodeString("3[a]2[bc]"));
     }
 
+    // P142
+
+    /* 
+    public ListNode detectCycle(ListNode head) {
+        if (head == null || head.next == null) {
+            return null;
+        }
+        ListNode shead = head;
+        ListNode fhead = head;
+
+        while (true) {
+            if (fhead == null || fhead.next == null) {
+                return null;
+            }
+
+            shead = shead.next;
+            fhead = fhead.next.next;
+
+            if (shead == fhead) break;
+        }
+        while (shead != head) {
+            shead = shead.next;
+            head = head.next;
+        }
+        return shead;
+    }
+        */
+
     // P406
 
     public static int[][] reconstructQueue(int[][] people) {
