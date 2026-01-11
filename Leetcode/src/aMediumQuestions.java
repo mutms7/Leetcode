@@ -12,6 +12,38 @@ public class aMediumQuestions {
         System.out.println(decodeString("3[a]2[bc]"));
     }
 
+// P
+    class MinStack {
+    int min;
+    LinkedList<int[]> stack;
+    
+
+    public MinStack() {
+        min = Integer.MAX_VALUE;
+        stack = new LinkedList<>();
+    }
+    
+    public void push(int val) {
+        min = Math.min(min, val);
+        stack.add(new int[] {val, min});
+    }
+    
+    public void pop() {
+        min = stack.pop()[1];
+        
+    }
+    
+    public int top() {
+        int[] temp = stack.pop();
+        min = temp[1];
+        return temp[0];
+    }
+    
+    public int getMin() {
+        return min;
+    }
+}
+
     // P142
 
     /* 
