@@ -12,6 +12,22 @@ public class aMediumQuestions {
         System.out.println(removeDuplicateLetters("ada"));
     }
 
+    // P739
+
+    public int[] dailyTemperatures(int[] temperatures) {
+        int[] answer = new int[temperatures.length];
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < temperatures.length; i++) {
+            while (!stack.isEmpty() && temperatures[stack.peek()] < temperatures[i]) {
+                answer[stack.peek()] = i-stack.pop();
+            }
+            stack.push(i);
+        }
+        return answer;
+    }
+
+    // P?
+
     public static String removeDuplicateLetters(String s) {
         int[] lastIndex = new int[26];
         for (int i = 0; i < s.length(); i++){
@@ -36,6 +52,7 @@ public class aMediumQuestions {
             sb.append((char) (st.pop() + 'a'));
         return sb.reverse().toString();
     }
+    
 // P
     class MinStack {
     int min;
