@@ -9,7 +9,30 @@ public class aMediumQuestions {
     }
 
     public static void main(String[] args) {
-        System.out.println(removeDuplicateLetters("ada"));
+        System.out.println(find132pattern(new int[] {3,1,4,2}));
+    }
+
+    // P456
+
+    public static boolean find132pattern(int[] nums) {
+        int[] minrights = new int[nums.length];
+        int[] minlefts = new int[nums.length];
+        int minL = nums[0];
+        int minR = nums[nums.length-1];
+        for (int i = 0; i < nums.length; i++) {
+            minlefts[i] = Math.min(minL, nums[i]);
+            minL = minlefts[i];
+            minrights[i] = Math.min(minR, nums[nums.length-i-1]);
+            minR = minrights[i];
+        }
+        for (int i = 1; i < nums.length-1; i++) {
+            if (minlefts[i-1] < nums[i] && minrights[i+1] < nums[i] && minlefts[i-1] < minrights[i+1]) {
+                return true;
+            }
+
+        }
+        return false;
+        
     }
 
     // P901OK
@@ -74,7 +97,7 @@ public class aMediumQuestions {
     }
     
     // P
-    
+
     class MinStack {
     int min;
     LinkedList<int[]> stack;
