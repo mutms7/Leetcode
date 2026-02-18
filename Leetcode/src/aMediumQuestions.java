@@ -12,7 +12,27 @@ public class aMediumQuestions {
         System.out.println(removeDuplicateLetters("ada"));
     }
 
-    // P739
+    // P901OK
+
+    class StockSpanner {
+
+    Stack<int[]> stack;
+
+    public StockSpanner() {
+        stack = new Stack<>();
+    }
+    
+    public int next(int price) {
+        int span = 1;
+        while (!stack.isEmpty() && stack.peek()[0] <= price) {
+            span += stack.pop()[1];
+        }
+        stack.push(new int[] {price, span});
+        return span;
+    }
+}
+
+    // P739OK
 
     public int[] dailyTemperatures(int[] temperatures) {
         int[] answer = new int[temperatures.length];
@@ -26,7 +46,7 @@ public class aMediumQuestions {
         return answer;
     }
 
-    // P?
+    // P?OK
 
     public static String removeDuplicateLetters(String s) {
         int[] lastIndex = new int[26];
@@ -53,7 +73,8 @@ public class aMediumQuestions {
         return sb.reverse().toString();
     }
     
-// P
+    // P
+    
     class MinStack {
     int min;
     LinkedList<int[]> stack;
