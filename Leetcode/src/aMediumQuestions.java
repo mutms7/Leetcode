@@ -16,7 +16,7 @@ public class aMediumQuestions {
 
     public static boolean find132pattern(int[] nums) {
         
-        
+       return true; 
     }
 
     // P901OK
