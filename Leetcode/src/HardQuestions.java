@@ -7,6 +7,45 @@ public class HardQuestions {
         System.out.println("BANC".substring(0, 4));
     }
 
+    // P84
+
+    public int largestRectangleArea(int[] heights) {
+        Stack<Integer> stack = new Stack<>();
+        int[] lefts = new int[heights.length];
+        int[] rights = new int[heights.length];
+        int maxarea = Integer.MIN_VALUE;
+        
+        for (int i = 0; i < heights.length; ++i) {
+            while (!stack.isEmpty() && heights[i] < heights[stack.peek()]) {
+                rights[stack.peek()] = i - stack.pop();
+            }
+            stack.push(i);
+        }
+        
+        stack.clear();
+        for (int i = heights.length-1; i >= 0; --i) {
+            while (!stack.isEmpty() && heights[i] < heights[stack.peek()]) {
+                lefts[stack.peek()] = stack.pop() - i;
+            }
+            stack.push(i);
+        }
+
+        for (int i = 0; i < heights.length; ++i) {
+            if (lefts[i] == 0) {
+                lefts[i] = i+1;
+            }
+            if (rights[i] == 0) {
+                rights[i] = heights.length-i;
+            }
+        }
+        System.out.println(Arrays.toString(lefts));
+        System.out.println(Arrays.toString(rights));
+        for (int i = 0; i < heights.length; ++i) {
+            maxarea = Math.max(maxarea, heights[i]*(lefts[i] + rights[i] - 1));
+        }
+        return maxarea;
+    }
+
     // P1944
 
     public int[] canSeePersonsCount(int[] heights) {
