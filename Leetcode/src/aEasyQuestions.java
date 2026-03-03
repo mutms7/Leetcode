@@ -13,6 +13,28 @@ public class aEasyQuestions {
         return "y";
     }
 
+    // P206
+    public class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+      }
+    public ListNode reverseList(ListNode head) {
+        ListNode curr = head;
+        ListNode ret = null;
+        
+
+        while (curr != null) {
+            ListNode node = new ListNode(curr.val);
+            node.next = ret;
+            ret = node;
+            curr = curr.next;
+        }
+        return ret;
+    }
+
     // P496
 
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
