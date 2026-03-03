@@ -13,6 +13,29 @@ public class aEasyQuestions {
         return "y";
     }
 
+    //P933
+
+    class RecentCounter {
+    Queue<Integer> past3000 = new LinkedList<>();
+    public RecentCounter() {
+       
+    }
+    
+    public int ping(int t) {
+        this.past3000.offer(t);
+        while (!this.past3000.isEmpty()) {
+            if (this.past3000.peek() < t-3000) {
+
+                this.past3000.poll();
+            } else {
+                break;
+            }
+        }
+        return past3000.size();
+    }
+}
+    
+    
     // P206
     public class ListNode {
         int val;
