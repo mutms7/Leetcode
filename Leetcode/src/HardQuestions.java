@@ -7,6 +7,26 @@ public class HardQuestions {
         System.out.println("BANC".substring(0, 4));
     }
 
+    // P1944
+
+    public int[] canSeePersonsCount(int[] heights) {
+        // monotonic stack coming from the right
+        Stack<Integer> stack = new Stack<>();
+        int[] cansee = new int[heights.length];
+        for (int i = heights.length-1; i >= 0; --i) {
+            cansee[i]++;
+            while (!stack.isEmpty() && heights[i] >= stack.peek()) {
+                stack.pop();
+                cansee[i]++;
+            }
+            if (stack.isEmpty()) {
+                cansee[i]--;
+            }
+            stack.push(heights[i]);
+        }
+        return cansee;
+    }
+
     // PX
     public static String test(String s) {
         
