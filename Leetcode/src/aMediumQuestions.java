@@ -12,12 +12,46 @@ public class aMediumQuestions {
         System.out.println(find132pattern(new int[] {3,1,4,2}));
     }
 
-    // P456
+    // P109OK
 
-    public static boolean find132pattern(int[] nums) {
-        
-       return true; 
+    /* 
+    public TreeNode sortedListToBST(ListNode head) {
+        ListNode left = null;
+        int length = length(head);
+        if (length == 0) {
+            return null;
+        }
+        if (length == 1) {
+            return new TreeNode(head.val, null, null);
+        }
+        for (int i = 0; i < length/2; i++) {
+            left = new ListNode(head.val, left);
+            head = head.next;
+        }
+        int val = head.val;
+        head = head.next;
+        left = reverse(left);
+        return new TreeNode(val, sortedListToBST(left), sortedListToBST(head));
     }
+
+    public ListNode reverse(ListNode lst) {
+        ListNode ret = null;
+        while (lst != null) {
+            ret = new ListNode(lst.val, ret);
+            lst = lst.next;
+        }
+        return ret;
+    }
+
+    public int length(ListNode lst) {
+        int i = 0;
+        while (lst != null) {
+            i++;
+            lst = lst.next;
+        }
+        return i;
+    }
+        */
 
     // P901OK
 
